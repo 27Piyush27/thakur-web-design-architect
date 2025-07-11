@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Hero3D from "@/components/Hero3D";
+import { Typewriter } from "@/components/Typewriter";
 import { 
   Code2, 
   Palette, 
@@ -20,7 +22,10 @@ import {
   Award,
   Briefcase,
   GraduationCap,
-  Send
+  Send,
+  Sparkles,
+  Zap,
+  Star
 } from "lucide-react";
 
 const Portfolio = () => {
@@ -162,71 +167,168 @@ const Portfolio = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="hero-section min-h-screen flex items-center section-padding pt-20">
-        <div className="max-w-7xl mx-auto w-full">
+      {/* Enhanced Hero Section */}
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 gradient-bg opacity-10"></div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full floating-1 hidden lg:block"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-accent/30 rounded-full floating-2 hidden lg:block"></div>
+        <div className="absolute bottom-40 left-20 w-12 h-12 bg-tech-purple/25 rounded-full floating-3 hidden lg:block"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-tech-blue/20 rounded-full floating-1 hidden lg:block"></div>
+        
+        {/* 3D Background */}
+        <div className="absolute inset-0 opacity-30">
+          <Hero3D />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto w-full section-padding pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-                  Hi, I'm{" "}
-                  <span className="gradient-text">Piyush Thakur</span>
-                </h1>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
-                  UI/UX Designer, Web Developer & Coder
-                </h2>
-              </div>
-              
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                Passionate about creating digital experiences that matter. Currently pursuing B.Tech at JUIT Solan, 
-                I specialize in full-stack development and user-centered design.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={() => scrollToSection("projects")}
-                  className="btn-primary text-primary-foreground px-8 py-3 text-lg"
-                >
-                  View My Work
-                </Button>
-                <Button 
-                  onClick={() => scrollToSection("contact")}
-                  variant="outline" 
-                  className="px-8 py-3 text-lg"
-                >
-                  Contact Me
-                </Button>
-              </div>
-              
-              <div className="flex items-center gap-4 pt-4">
-                <a href="mailto:27piyushthakur27@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Mail className="h-6 w-6" />
-                </a>
-                <a href="https://linkedin.com/in/piyush-thakur-952364296" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin className="h-6 w-6" />
-                </a>
-                <a href="https://github.com/27Piyush27/piyush" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Github className="h-6 w-6" />
-                </a>
+            <div className="space-y-8">
+              {/* Glass Card with Content */}
+              <div className="glass-card rounded-2xl p-8 space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Sparkles className="h-6 w-6 text-accent animate-pulse" />
+                    <span className="text-accent font-medium">Available for Freelance</span>
+                  </div>
+                  
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                    Hi, I'm{" "}
+                    <span className="gradient-text neon-glow">Piyush Thakur</span>
+                  </h1>
+                  
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]">
+                    <Typewriter 
+                      texts={[
+                        "UI/UX Designer",
+                        "Web Developer",
+                        "Full Stack Developer",
+                        "Problem Solver"
+                      ]}
+                      speed={100}
+                      deleteSpeed={50}
+                      pauseDuration={2000}
+                    />
+                  </div>
+                </div>
+                
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                  Passionate about creating digital experiences that matter. Currently pursuing B.Tech at JUIT Solan, 
+                  I specialize in full-stack development and user-centered design.
+                </p>
+                
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 py-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">2+</div>
+                    <div className="text-sm text-muted-foreground">Years Experience</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">15+</div>
+                    <div className="text-sm text-muted-foreground">Projects Done</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary">5+</div>
+                    <div className="text-sm text-muted-foreground">Happy Clients</div>
+                  </div>
+                </div>
+                
+                {/* Enhanced Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    onClick={() => scrollToSection("projects")}
+                    className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold relative group"
+                  >
+                    <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
+                    View My Work
+                  </Button>
+                  <Button 
+                    onClick={() => scrollToSection("contact")}
+                    variant="outline" 
+                    className="glass-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold group"
+                  >
+                    <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
+                    Let's Talk
+                  </Button>
+                </div>
+                
+                {/* Social Links */}
+                <div className="flex items-center gap-6 pt-4">
+                  <span className="text-sm text-muted-foreground">Follow me:</span>
+                  <div className="flex gap-4">
+                    <a 
+                      href="mailto:27piyushthakur27@gmail.com" 
+                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                    >
+                      <Mail className="h-5 w-5 group-hover:animate-pulse" />
+                    </a>
+                    <a 
+                      href="https://linkedin.com/in/piyush-thakur-952364296" 
+                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                    >
+                      <Linkedin className="h-5 w-5 group-hover:animate-pulse" />
+                    </a>
+                    <a 
+                      href="https://github.com/27Piyush27/piyush" 
+                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                    >
+                      <Github className="h-5 w-5 group-hover:animate-pulse" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div className="flex justify-center lg:justify-end">
+            {/* Right Side - Enhanced Visual */}
+            <div className="flex justify-center lg:justify-end relative">
               <div className="relative">
-                <div className="w-80 h-80 rounded-full bg-gradient-to-br from-primary/20 to-tech-blue/20 floating-animation flex items-center justify-center">
-                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-primary to-tech-blue flex items-center justify-center text-white text-6xl font-bold">
-                    PT
+                {/* Main Avatar Circle */}
+                <div className="w-80 h-80 relative">
+                  {/* Outer Ring */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-tech-blue to-tech-purple p-1 floating-1">
+                    <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
+                      {/* Inner Avatar */}
+                      <div className="w-64 h-64 rounded-full bg-gradient-to-br from-primary to-tech-blue flex items-center justify-center text-white text-6xl font-bold relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        <span className="relative z-10">PT</span>
+                        {/* Animated Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating Tech Icons */}
+                  <div className="absolute -top-4 -right-4 p-3 glass-card rounded-full floating-2">
+                    <Code2 className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="absolute top-1/2 -left-6 p-3 glass-card rounded-full floating-3">
+                    <Palette className="h-6 w-6 text-accent" />
+                  </div>
+                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 p-3 glass-card rounded-full floating-1">
+                    <Smartphone className="h-6 w-6 text-tech-purple" />
+                  </div>
+                  <div className="absolute top-1/4 -right-8 p-3 glass-card rounded-full floating-2">
+                    <Star className="h-6 w-6 text-tech-blue" />
                   </div>
                 </div>
-                <div className="absolute top-4 right-4 w-16 h-16 bg-accent rounded-full floating-animation opacity-80"></div>
-                <div className="absolute bottom-8 left-8 w-12 h-12 bg-tech-purple rounded-full floating-animation opacity-60"></div>
+                
+                {/* Orbiting Elements */}
+                <div className="absolute top-8 right-8 w-12 h-12 bg-accent/80 rounded-full floating-1 opacity-80"></div>
+                <div className="absolute bottom-12 left-4 w-8 h-8 bg-tech-purple/70 rounded-full floating-3 opacity-60"></div>
+                <div className="absolute top-1/2 right-16 w-6 h-6 bg-primary/60 rounded-full floating-2 opacity-40"></div>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="h-8 w-8 text-muted-foreground" />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+          <div className="animate-bounce">
+            <ChevronDown className="h-8 w-8 text-muted-foreground mx-auto" />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2">Scroll to explore</p>
         </div>
       </section>
 

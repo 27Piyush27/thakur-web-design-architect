@@ -57,6 +57,11 @@ All colors MUST be HSL.
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Modern effects */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --backdrop-blur: blur(10px);
 
     --radius: 0.5rem;
 
@@ -134,35 +139,105 @@ All colors MUST be HSL.
 
   .hero-section {
     background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Glass morphism effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  /* Animated gradient background */
+  .gradient-bg {
+    background: linear-gradient(-45deg, #00bcd4, #2196f3, #9c27b0, #f44336);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Modern button styles */
+  .btn-modern {
+    position: relative;
+    overflow: hidden;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-button);
+    transition: var(--transition-bounce);
+  }
+
+  .btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-modern:hover::before {
+    left: 100%;
+  }
+
+  .btn-modern:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px -3px hsl(var(--primary) / 0.5);
+  }
+
+  /* Floating elements */
+  .floating-1 {
+    animation: float1 6s ease-in-out infinite;
+  }
+
+  .floating-2 {
+    animation: float2 8s ease-in-out infinite;
+  }
+
+  .floating-3 {
+    animation: float3 10s ease-in-out infinite;
+  }
+
+  /* Typewriter cursor */
+  .typewriter-cursor {
+    display: inline-block;
+    background: currentColor;
+    margin-left: 0.1rem;
+    width: 2px;
+    animation: blink 1.5s infinite;
+  }
+
+  /* Card hover effects */
   .card-hover {
     transition: var(--transition-smooth);
     box-shadow: var(--shadow-soft);
   }
 
   .card-hover:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px) rotateX(5deg);
     box-shadow: var(--shadow-card);
   }
 
-  .btn-primary {
-    background: var(--gradient-primary);
-    box-shadow: var(--shadow-button);
-    transition: var(--transition-bounce);
+  /* Neon glow effect */
+  .neon-glow {
+    text-shadow: 
+      0 0 5px hsl(var(--primary)),
+      0 0 10px hsl(var(--primary)),
+      0 0 15px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary));
   }
 
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px -3px hsl(var(--primary) / 0.4);
-  }
-
-  .floating-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-
+  /* Section padding */
   .section-padding {
     @apply py-20 px-4 md:px-8 lg:px-16;
+  }
+
+  /* Magnetic button effect */
+  .magnetic-btn {
+    transition: var(--transition-smooth);
+    will-change: transform;
   }
 }
 
@@ -175,4 +250,49 @@ All colors MUST be HSL.
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(120deg); }
+  66% { transform: translateY(-15px) rotate(240deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  25% { transform: translateX(20px) translateY(-20px); }
+  50% { transform: translateX(-10px) translateY(-30px); }
+  75% { transform: translateX(-20px) translateY(-10px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(180deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px hsl(var(--primary)),
+      0 0 10px hsl(var(--primary)),
+      0 0 15px hsl(var(--primary));
+  }
+  50% {
+    text-shadow: 
+      0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary)),
+      0 0 30px hsl(var(--primary)),
+      0 0 40px hsl(var(--primary));
+  }
 }
