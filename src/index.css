@@ -17,8 +17,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 196 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 196 100% 85%;
+    --primary-dark: 196 100% 35%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -26,7 +28,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 43 100% 68%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +36,27 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 196 100% 47%;
+
+    /* Portfolio specific colors */
+    --hero-bg: 249 100% 95%;
+    --section-bg: 0 0% 98%;
+    --tech-blue: 218 100% 66%;
+    --tech-purple: 262 83% 67%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--tech-blue)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(43 100% 78%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--hero-bg)), hsl(var(--primary-light)));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-card: 0 8px 30px -5px hsl(var(--primary) / 0.15);
+    --shadow-button: 0 4px 15px -3px hsl(var(--primary) / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --radius: 0.5rem;
 
@@ -101,5 +123,56 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', 'Poppins', sans-serif;
   }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-tech-blue bg-clip-text text-transparent;
+  }
+
+  .hero-section {
+    background: var(--gradient-hero);
+  }
+
+  .card-hover {
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-button);
+    transition: var(--transition-bounce);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -3px hsl(var(--primary) / 0.4);
+  }
+
+  .floating-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-16;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-tech-blue to-tech-purple bg-clip-text text-transparent;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
