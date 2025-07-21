@@ -244,6 +244,14 @@ const Portfolio = () => {
                     <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
                     View My Work
                   </Button>
+                  <a 
+                    href="https://drive.google.com/uc?export=download&id=1gcZ50WLe_ma7z_c5RjtRgOrAytrw-yyu"
+                    download="Piyush_Thakur_Resume.pdf"
+                    className="inline-flex items-center justify-center glass-card border-2 border-accent/30 hover:border-accent px-8 py-4 text-lg font-semibold group rounded-md transition-all hover:scale-105"
+                  >
+                    <Star className="h-5 w-5 mr-2 group-hover:animate-spin" />
+                    Download Resume
+                  </a>
                   <Button 
                     onClick={() => scrollToSection("contact")}
                     variant="outline" 
