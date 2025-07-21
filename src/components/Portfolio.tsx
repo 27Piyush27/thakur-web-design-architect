@@ -196,7 +196,7 @@ const Portfolio = () => {
                   
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                     Hi, I'm{" "}
-                    <span className="gradient-text neon-glow">Piyush Thakur</span>
+                    <span className="text-primary">Piyush Thakur</span>
                   </h1>
                   
                   <div className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]">
