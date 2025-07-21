@@ -40,7 +40,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "experience", "skills", "services", "projects", "contact"];
+      const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -65,6 +65,7 @@ const Portfolio = () => {
     { name: "Skills", href: "skills" },
     { name: "Services", href: "services" },
     { name: "Projects", href: "projects" },
+    { name: "Certificates", href: "certificates" },
     { name: "Contact", href: "contact" },
   ];
 
@@ -541,6 +542,64 @@ const Portfolio = () => {
                 </div>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section id="certificates" className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Certificates</h2>
+            <p className="text-lg text-muted-foreground">
+              Professional certifications and achievements in technology and data analytics.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Intel Digital India Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-64 bg-gradient-to-br from-primary/10 to-tech-blue/10 p-4">
+                <img 
+                  src="/src/assets/intel-certificate.avif" 
+                  alt="Intel Digital India - AI for All Program Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Award className="h-5 w-5 text-primary" />
+                  <Badge variant="outline">Intel Digital India</Badge>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">AI for All Program</h3>
+                <p className="text-muted-foreground text-sm">
+                  Comprehensive program covering artificial intelligence fundamentals, 
+                  machine learning concepts, and practical AI applications.
+                </p>
+              </div>
+            </Card>
+
+            {/* Deloitte Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-64 bg-gradient-to-br from-accent/10 to-tech-purple/10 p-4">
+                <img 
+                  src="/src/assets/deloitte-certificate.avif" 
+                  alt="Deloitte Data Analytics Job Simulation Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Award className="h-5 w-5 text-primary" />
+                  <Badge variant="outline">Deloitte</Badge>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Data Analytics Job Simulation</h3>
+                <p className="text-muted-foreground text-sm">
+                  Real-world data analytics experience through Deloitte's comprehensive 
+                  job simulation program covering data analysis and insights.
+                </p>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
