@@ -556,47 +556,150 @@ const Portfolio = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Intel Digital India Certificate */}
             <Card className="overflow-hidden card-hover">
-              <div className="h-64 bg-gradient-to-br from-primary/10 to-tech-blue/10 p-4">
+              <div className="h-48 bg-gradient-to-br from-primary/10 to-tech-blue/10 p-4">
                 <img 
                   src="/src/assets/intel-certificate.avif" 
                   alt="Intel Digital India - AI for All Program Certificate"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Award className="h-5 w-5 text-primary" />
-                  <Badge variant="outline">Intel Digital India</Badge>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Intel Digital India</Badge>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">AI for All Program</h3>
-                <p className="text-muted-foreground text-sm">
-                  Comprehensive program covering artificial intelligence fundamentals, 
-                  machine learning concepts, and practical AI applications.
+                <h3 className="text-lg font-semibold mb-2">AI for All Program</h3>
+                <p className="text-muted-foreground text-xs">
+                  Comprehensive program covering artificial intelligence fundamentals and practical AI applications.
                 </p>
               </div>
             </Card>
 
             {/* Deloitte Certificate */}
             <Card className="overflow-hidden card-hover">
-              <div className="h-64 bg-gradient-to-br from-accent/10 to-tech-purple/10 p-4">
+              <div className="h-48 bg-gradient-to-br from-accent/10 to-tech-purple/10 p-4">
                 <img 
                   src="/src/assets/deloitte-certificate.avif" 
                   alt="Deloitte Data Analytics Job Simulation Certificate"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Award className="h-5 w-5 text-primary" />
-                  <Badge variant="outline">Deloitte</Badge>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Deloitte</Badge>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Data Analytics Job Simulation</h3>
-                <p className="text-muted-foreground text-sm">
-                  Real-world data analytics experience through Deloitte's comprehensive 
-                  job simulation program covering data analysis and insights.
+                <h3 className="text-lg font-semibold mb-2">Data Analytics Job Simulation</h3>
+                <p className="text-muted-foreground text-xs">
+                  Real-world data analytics experience through comprehensive job simulation program.
+                </p>
+              </div>
+            </Card>
+
+            {/* Newton School Python Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-48 bg-gradient-to-br from-primary/10 to-tech-green/10 p-4">
+                <img 
+                  src="/src/assets/newton-python-certificate.avif" 
+                  alt="Newton School Python Course Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Newton School</Badge>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Python Course</h3>
+                <p className="text-muted-foreground text-xs">
+                  Comprehensive Python programming course covering fundamentals and advanced concepts.
+                </p>
+              </div>
+            </Card>
+
+            {/* NPTEL Cloud Computing Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-48 bg-gradient-to-br from-accent/10 to-primary/10 p-4">
+                <img 
+                  src="/src/assets/nptel-cloud-certificate.avif" 
+                  alt="NPTEL Cloud Computing Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">NPTEL</Badge>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Cloud Computing</h3>
+                <p className="text-muted-foreground text-xs">
+                  Online certification covering cloud computing concepts and practical applications.
+                </p>
+              </div>
+            </Card>
+
+            {/* Udacity Generative AI Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-48 bg-gradient-to-br from-tech-blue/10 to-accent/10 p-4">
+                <img 
+                  src="/src/assets/udacity-genai-certificate.avif" 
+                  alt="Udacity Introducing Generative AI with AWS Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Udacity</Badge>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Generative AI with AWS</h3>
+                <p className="text-muted-foreground text-xs">
+                  Introduction to generative AI technologies and AWS implementation strategies.
+                </p>
+              </div>
+            </Card>
+
+            {/* Udemy Python ML Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-48 bg-gradient-to-br from-tech-purple/10 to-primary/10 p-4">
+                <img 
+                  src="/src/assets/udemy-python-ml-certificate.avif" 
+                  alt="Udemy Python for Data Science and Machine Learning Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Udemy</Badge>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Python for Data Science & ML</h3>
+                <p className="text-muted-foreground text-xs">
+                  Complete course covering Python for data science and machine learning applications.
+                </p>
+              </div>
+            </Card>
+
+            {/* Udemy UI/UX Certificate */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-48 bg-gradient-to-br from-tech-green/10 to-tech-purple/10 p-4">
+                <img 
+                  src="/src/assets/udemy-uiux-certificate.avif" 
+                  alt="Udemy UI/UX using Figma and Adobe XD Certificate"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="h-4 w-4 text-primary" />
+                  <Badge variant="outline" className="text-xs">Udemy</Badge>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">UI/UX with Figma & Adobe XD</h3>
+                <p className="text-muted-foreground text-xs">
+                  User interface and experience design using Figma and Adobe XD tools.
                 </p>
               </div>
             </Card>
