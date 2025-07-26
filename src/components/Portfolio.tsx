@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Hero3D from "@/components/Hero3D";
 import { Typewriter } from "@/components/Typewriter";
-import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star } from "lucide-react";
+import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain } from "lucide-react";
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -76,6 +76,10 @@ const Portfolio = () => {
     icon: <Code2 className="h-8 w-8" />,
     title: "Frontend Development",
     description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
+  }, {
+    icon: <Brain className="h-8 w-8" />,
+    title: "AI/ML & Data Analytics",
+    description: "Developing intelligent solutions using machine learning algorithms and providing data-driven insights for informed decision making."
   }, {
     icon: <Globe className="h-8 w-8" />,
     title: "Backend Development",
