@@ -4,40 +4,17 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Hero3D from "@/components/Hero3D";
 import { Typewriter } from "@/components/Typewriter";
-import { 
-  Code2, 
-  Palette, 
-  Smartphone, 
-  Globe, 
-  Mail, 
-  Phone, 
-  Github, 
-  Linkedin, 
-  ExternalLink, 
-  ChevronDown,
-  Menu,
-  X,
-  MapPin,
-  Calendar,
-  Award,
-  Briefcase,
-  GraduationCap,
-  Send,
-  Sparkles,
-  Zap,
-  Star
-} from "lucide-react";
-
+import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star } from "lucide-react";
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({
+      behavior: "smooth"
+    });
     setIsMenuOpen(false);
   };
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "contact"];
@@ -53,68 +30,73 @@ const Portfolio = () => {
         setActiveSection(currentSection);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navigation = [
-    { name: "Home", href: "home" },
-    { name: "About", href: "about" },
-    { name: "Experience", href: "experience" },
-    { name: "Skills", href: "skills" },
-    { name: "Services", href: "services" },
-    { name: "Projects", href: "projects" },
-    { name: "Certificates", href: "certificates" },
-    { name: "Contact", href: "contact" },
-  ];
-
-  const skills = [
-    { category: "Languages", items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"] },
-    { category: "Frameworks", items: ["React", "MERN Stack", "Git", "GitHub"] },
-    { category: "Expertise", items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"] }
-  ];
-
-  const services = [
-    {
-      icon: <Palette className="h-8 w-8" />,
-      title: "UI/UX Design",
-      description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
-    },
-    {
-      icon: <Code2 className="h-8 w-8" />,
-      title: "Frontend Development", 
-      description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Backend Development",
-      description: "Developing robust server-side applications with secure APIs and efficient database management systems."
-    },
-    {
-      icon: <Smartphone className="h-8 w-8" />,
-      title: "Full Stack Development",
-      description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
-    }
-  ];
-
-  const projects = [
-    {
-      title: "House Price Prediction",
-      description: "A machine learning model that estimates real estate prices based on various features like location, size, and amenities.",
-      tech: ["Python", "ML", "Data Analysis"],
-      image: "/api/placeholder/400/250"
-    },
-    {
-      title: "E-commerce Website",
-      description: "A fully functional online store with frontend and backend integration, featuring user authentication and payment processing.",
-      tech: ["React", "Node.js", "MongoDB"],
-      image: "/api/placeholder/400/250"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const navigation = [{
+    name: "Home",
+    href: "home"
+  }, {
+    name: "About",
+    href: "about"
+  }, {
+    name: "Experience",
+    href: "experience"
+  }, {
+    name: "Skills",
+    href: "skills"
+  }, {
+    name: "Services",
+    href: "services"
+  }, {
+    name: "Projects",
+    href: "projects"
+  }, {
+    name: "Certificates",
+    href: "certificates"
+  }, {
+    name: "Contact",
+    href: "contact"
+  }];
+  const skills = [{
+    category: "Languages",
+    items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"]
+  }, {
+    category: "Frameworks",
+    items: ["React", "MERN Stack", "Git", "GitHub"]
+  }, {
+    category: "Expertise",
+    items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"]
+  }];
+  const services = [{
+    icon: <Palette className="h-8 w-8" />,
+    title: "UI/UX Design",
+    description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
+  }, {
+    icon: <Code2 className="h-8 w-8" />,
+    title: "Frontend Development",
+    description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
+  }, {
+    icon: <Globe className="h-8 w-8" />,
+    title: "Backend Development",
+    description: "Developing robust server-side applications with secure APIs and efficient database management systems."
+  }, {
+    icon: <Smartphone className="h-8 w-8" />,
+    title: "Full Stack Development",
+    description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
+  }];
+  const projects = [{
+    title: "House Price Prediction",
+    description: "A machine learning model that estimates real estate prices based on various features like location, size, and amenities.",
+    tech: ["Python", "ML", "Data Analysis"],
+    image: "/api/placeholder/400/250"
+  }, {
+    title: "E-commerce Website",
+    description: "A fully functional online store with frontend and backend integration, featuring user authentication and payment processing.",
+    tech: ["React", "Node.js", "MongoDB"],
+    image: "/api/placeholder/400/250"
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -123,27 +105,14 @@ const Portfolio = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
-                    activeSection === item.href
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
+              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className={`px-3 py-2 text-sm font-medium transition-colors ${activeSection === item.href ? "text-primary border-b-2 border-primary" : "text-muted-foreground hover:text-primary"}`}>
                   {item.name}
-                </button>
-              ))}
+                </button>)}
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-muted-foreground hover:text-primary"
-              >
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-muted-foreground hover:text-primary">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
@@ -151,21 +120,13 @@ const Portfolio = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-background border-b border-border">
+        {isMenuOpen && <div className="md:hidden bg-background border-b border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary w-full text-left"
-                >
+              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary w-full text-left">
                   {item.name}
-                </button>
-              ))}
+                </button>)}
             </div>
-          </div>
-        )}
+          </div>}
       </nav>
 
       {/* Enhanced Hero Section */}
@@ -201,24 +162,11 @@ const Portfolio = () => {
                   </h1>
                   
                   <div className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]">
-                    <Typewriter 
-                      texts={[
-                        "UI/UX Designer",
-                        "Web Developer",
-                        "Full Stack Developer",
-                        "Problem Solver"
-                      ]}
-                      speed={100}
-                      deleteSpeed={50}
-                      pauseDuration={2000}
-                    />
+                    <Typewriter texts={["UI/UX Designer", "Web Developer", "Full Stack Developer", "Problem Solver"]} speed={100} deleteSpeed={50} pauseDuration={2000} />
                   </div>
                 </div>
                 
-                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  Passionate about creating digital experiences that matter. Currently pursuing B.Tech at JUIT Solan, 
-                  I specialize in full-stack development and user-centered design.
-                </p>
+                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">Passionate about creating digital experiences that matter. Currently pursuing B.Tech at JUIT Solan, I specialize in full-stack development,ai/ml,data analytic and user-centered design.</p>
                 
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 py-4">
@@ -238,26 +186,15 @@ const Portfolio = () => {
                 
                 {/* Enhanced Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    onClick={() => scrollToSection("projects")}
-                    className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold relative group"
-                  >
+                  <Button onClick={() => scrollToSection("projects")} className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold relative group">
                     <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
                     View My Work
                   </Button>
-                  <a 
-                    href="https://drive.google.com/uc?export=download&id=1gcZ50WLe_ma7z_c5RjtRgOrAytrw-yyu"
-                    download="Piyush_Thakur_Resume.pdf"
-                    className="inline-flex items-center justify-center glass-card border-2 border-accent/30 hover:border-accent px-8 py-4 text-lg font-semibold group rounded-md transition-all hover:scale-105"
-                  >
+                  <a href="https://drive.google.com/uc?export=download&id=1gcZ50WLe_ma7z_c5RjtRgOrAytrw-yyu" download="Piyush_Thakur_Resume.pdf" className="inline-flex items-center justify-center glass-card border-2 border-accent/30 hover:border-accent px-8 py-4 text-lg font-semibold group rounded-md transition-all hover:scale-105">
                     <Star className="h-5 w-5 mr-2 group-hover:animate-spin" />
                     Download Resume
                   </a>
-                  <Button 
-                    onClick={() => scrollToSection("contact")}
-                    variant="outline" 
-                    className="glass-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold group"
-                  >
+                  <Button onClick={() => scrollToSection("contact")} variant="outline" className="glass-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold group">
                     <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
                     Let's Talk
                   </Button>
@@ -267,22 +204,13 @@ const Portfolio = () => {
                 <div className="flex items-center gap-6 pt-4">
                   <span className="text-sm text-muted-foreground">Follow me:</span>
                   <div className="flex gap-4">
-                    <a 
-                      href="mailto:27piyushthakur27@gmail.com" 
-                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
-                    >
+                    <a href="mailto:27piyushthakur27@gmail.com" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
                       <Mail className="h-5 w-5 group-hover:animate-pulse" />
                     </a>
-                    <a 
-                      href="https://linkedin.com/in/piyush-thakur-952364296" 
-                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
-                    >
+                    <a href="https://linkedin.com/in/piyush-thakur-952364296" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
                       <Linkedin className="h-5 w-5 group-hover:animate-pulse" />
                     </a>
-                    <a 
-                      href="https://github.com/27Piyush27/piyush" 
-                      className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
-                    >
+                    <a href="https://github.com/27Piyush27/piyush" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
                       <Github className="h-5 w-5 group-hover:animate-pulse" />
                     </a>
                   </div>
@@ -465,18 +393,14 @@ const Portfolio = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skillGroup, index) => (
-              <Card key={index} className="p-6 card-hover">
+            {skills.map((skillGroup, index) => <Card key={index} className="p-6 card-hover">
                 <h3 className="text-xl font-semibold mb-4 text-center">{skillGroup.category}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill, skillIndex) => (
-                    <Badge key={skillIndex} variant="secondary" className="px-3 py-1">
+                  {skillGroup.items.map((skill, skillIndex) => <Badge key={skillIndex} variant="secondary" className="px-3 py-1">
                       {skill}
-                    </Badge>
-                  ))}
+                    </Badge>)}
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -492,8 +416,7 @@ const Portfolio = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="p-6 card-hover text-center">
+            {services.map((service, index) => <Card key={index} className="p-6 card-hover text-center">
                 <div className="flex justify-center mb-4">
                   <div className="p-3 bg-primary/10 rounded-lg text-primary">
                     {service.icon}
@@ -501,8 +424,7 @@ const Portfolio = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                 <p className="text-muted-foreground text-sm">{service.description}</p>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -518,8 +440,7 @@ const Portfolio = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="overflow-hidden card-hover">
+            {projects.map((project, index) => <Card key={index} className="overflow-hidden card-hover">
                 <div className="h-48 bg-gradient-to-br from-primary/20 to-tech-blue/20 flex items-center justify-center">
                   <div className="text-6xl font-bold text-primary/50">
                     {project.title.charAt(0)}
@@ -529,19 +450,16 @@ const Portfolio = () => {
                   <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline">
+                    {project.tech.map((tech, techIndex) => <Badge key={techIndex} variant="outline">
                         {tech}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                   <Button variant="outline" className="w-full">
                     <ExternalLink className="h-4 w-4 mr-2" />
                     View Project
                   </Button>
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -560,11 +478,7 @@ const Portfolio = () => {
             {/* Intel Digital India Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-primary/10 to-tech-blue/10 p-4">
-                <img 
-                  src="/src/assets/intel-certificate.avif" 
-                  alt="Intel Digital India - AI for All Program Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/intel-certificate.avif" alt="Intel Digital India - AI for All Program Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -581,11 +495,7 @@ const Portfolio = () => {
             {/* Deloitte Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-accent/10 to-tech-purple/10 p-4">
-                <img 
-                  src="/src/assets/deloitte-certificate.avif" 
-                  alt="Deloitte Data Analytics Job Simulation Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/deloitte-certificate.avif" alt="Deloitte Data Analytics Job Simulation Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -602,11 +512,7 @@ const Portfolio = () => {
             {/* Newton School Python Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-primary/10 to-tech-green/10 p-4">
-                <img 
-                  src="/src/assets/newton-python-certificate.avif" 
-                  alt="Newton School Python Course Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/newton-python-certificate.avif" alt="Newton School Python Course Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -623,11 +529,7 @@ const Portfolio = () => {
             {/* NPTEL Cloud Computing Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-accent/10 to-primary/10 p-4">
-                <img 
-                  src="/src/assets/nptel-cloud-certificate.avif" 
-                  alt="NPTEL Cloud Computing Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/nptel-cloud-certificate.avif" alt="NPTEL Cloud Computing Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -644,11 +546,7 @@ const Portfolio = () => {
             {/* Udacity Generative AI Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-tech-blue/10 to-accent/10 p-4">
-                <img 
-                  src="/src/assets/udacity-genai-certificate.avif" 
-                  alt="Udacity Introducing Generative AI with AWS Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/udacity-genai-certificate.avif" alt="Udacity Introducing Generative AI with AWS Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -665,11 +563,7 @@ const Portfolio = () => {
             {/* Udemy Python ML Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-tech-purple/10 to-primary/10 p-4">
-                <img 
-                  src="/src/assets/udemy-python-ml-certificate.avif" 
-                  alt="Udemy Python for Data Science and Machine Learning Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/udemy-python-ml-certificate.avif" alt="Udemy Python for Data Science and Machine Learning Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -686,11 +580,7 @@ const Portfolio = () => {
             {/* Udemy UI/UX Certificate */}
             <Card className="overflow-hidden card-hover">
               <div className="h-48 bg-gradient-to-br from-tech-green/10 to-tech-purple/10 p-4">
-                <img 
-                  src="/src/assets/udemy-uiux-certificate.avif" 
-                  alt="Udemy UI/UX using Figma and Adobe XD Certificate"
-                  className="w-full h-full object-contain rounded-lg"
-                />
+                <img src="/src/assets/udemy-uiux-certificate.avif" alt="Udemy UI/UX using Figma and Adobe XD Certificate" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -756,34 +646,19 @@ const Portfolio = () => {
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
                     Name
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                    placeholder="Your name"
-                  />
+                  <input type="text" id="name" className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Your name" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                    placeholder="your.email@example.com"
-                  />
+                  <input type="email" id="email" className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="your.email@example.com" />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
                     Message
                   </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                    placeholder="Tell me about your project..."
-                  ></textarea>
+                  <textarea id="message" rows={5} className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Tell me about your project..."></textarea>
                 </div>
                 <Button type="submit" className="btn-primary w-full text-primary-foreground">
                   <Send className="h-4 w-4 mr-2" />
@@ -805,8 +680,6 @@ const Portfolio = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Portfolio;
