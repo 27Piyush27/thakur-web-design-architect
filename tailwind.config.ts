@@ -66,8 +66,15 @@ export default {
 				},
 				'tech-blue': 'hsl(var(--tech-blue))',
 				'tech-purple': 'hsl(var(--tech-purple))',
+				'tech-emerald': 'hsl(var(--tech-emerald))',
+				'tech-amber': 'hsl(var(--tech-amber))',
 				'hero-bg': 'hsl(var(--hero-bg))',
 				'section-bg': 'hsl(var(--section-bg))'
+			},
+			fontFamily: {
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'serif': ['Playfair Display', 'serif'],
+				'mono': ['JetBrains Mono', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

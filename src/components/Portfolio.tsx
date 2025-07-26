@@ -185,8 +185,9 @@ const Portfolio = () => {
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">5+</div>
                     <div className="text-sm text-muted-foreground">Happy Clients</div>
-                  </div>
                 </div>
+              </div>
+            </div>
                 
                 {/* Enhanced Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -203,98 +204,111 @@ const Portfolio = () => {
                     Let's Talk
                   </Button>
                 </div>
-                
-                {/* Social Links */}
-                <div className="flex items-center gap-6 pt-4">
-                  <span className="text-sm text-muted-foreground">Follow me:</span>
-                  <div className="flex gap-4">
-                    <a href="mailto:27piyushthakur27@gmail.com" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
-                      <Mail className="h-5 w-5 group-hover:animate-pulse" />
-                    </a>
-                    <a href="https://linkedin.com/in/piyush-thakur-952364296" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
-                      <Linkedin className="h-5 w-5 group-hover:animate-pulse" />
-                    </a>
-                    <a href="https://github.com/27Piyush27/piyush" className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group">
-                      <Github className="h-5 w-5 group-hover:animate-pulse" />
-                    </a>
-                  </div>
+              
+              {/* Social Links */}
+              <div className="flex items-center justify-center lg:justify-start gap-8 pt-8">
+                <span className="text-sm font-medium text-muted-foreground">Connect with me:</span>
+                <div className="flex gap-4">
+                  <a 
+                    href="mailto:27piyushthakur27@gmail.com" 
+                    className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                  >
+                    <Mail className="h-5 w-5 group-hover:animate-pulse" />
+                  </a>
+                  <a 
+                    href="https://linkedin.com/in/piyush-thakur-952364296" 
+                    className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                  >
+                    <Linkedin className="h-5 w-5 group-hover:animate-pulse" />
+                  </a>
+                  <a 
+                    href="https://github.com/27Piyush27/piyush" 
+                    className="p-3 glass-card rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 magnetic-btn group"
+                  >
+                    <Github className="h-5 w-5 group-hover:animate-pulse" />
+                  </a>
                 </div>
               </div>
             </div>
             
-            {/* Right Side - Enhanced Visual */}
+            {/* Right Side - Enhanced 3D Visual */}
             <div className="flex justify-center lg:justify-end relative">
-              <div className="relative">
-                {/* Main Avatar Circle */}
-                <div className="w-80 h-80 relative">
-                  {/* Outer Ring */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-tech-blue to-tech-purple p-1 floating-1">
-                    <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                      {/* Inner Avatar */}
-                      <div className="w-64 h-64 rounded-full bg-gradient-to-br from-primary to-tech-blue flex items-center justify-center text-white text-6xl font-bold relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                        <span className="relative z-10">PT</span>
-                        {/* Animated Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              <div className="relative w-full max-w-lg">
+                {/* Main Avatar Circle with Modern Design */}
+                <div className="aspect-square relative">
+                  {/* Outer Ring with Gradient */}
+                  <div className="absolute inset-0 rounded-full gradient-bg p-2 floating-1">
+                    <div className="w-full h-full rounded-full bg-background flex items-center justify-center shadow-elegant">
+                      {/* Inner Avatar with Modern Typography */}
+                      <div className="w-4/5 h-4/5 rounded-full bg-gradient-to-br from-primary via-tech-purple to-tech-emerald flex items-center justify-center text-white relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                        <span className="relative z-10 text-6xl font-serif font-bold">PT</span>
+                        {/* Shimmer Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-1500"></div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Floating Tech Icons */}
-                  <div className="absolute -top-4 -right-4 p-3 glass-card rounded-full floating-2">
-                    <Code2 className="h-6 w-6 text-primary" />
+                  {/* Floating Tech Icons with Modern Styling */}
+                  <div className="absolute -top-8 -right-8 p-4 glass-card rounded-2xl floating-2 shadow-elegant">
+                    <Code2 className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="absolute top-1/2 -left-6 p-3 glass-card rounded-full floating-3">
-                    <Palette className="h-6 w-6 text-accent" />
+                  <div className="absolute top-1/2 -left-10 p-4 glass-card rounded-2xl floating-3 shadow-elegant">
+                    <Palette className="h-8 w-8 text-accent" />
                   </div>
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 p-3 glass-card rounded-full floating-1">
-                    <Smartphone className="h-6 w-6 text-tech-purple" />
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 p-4 glass-card rounded-2xl floating-1 shadow-elegant">
+                    <Brain className="h-8 w-8 text-tech-emerald" />
                   </div>
-                  <div className="absolute top-1/4 -right-8 p-3 glass-card rounded-full floating-2">
-                    <Star className="h-6 w-6 text-tech-blue" />
+                  <div className="absolute top-1/4 -right-12 p-4 glass-card rounded-2xl floating-2 shadow-elegant">
+                    <Star className="h-8 w-8 text-tech-amber" />
                   </div>
                 </div>
                 
-                {/* Orbiting Elements */}
-                <div className="absolute top-8 right-8 w-12 h-12 bg-accent/80 rounded-full floating-1 opacity-80"></div>
-                <div className="absolute bottom-12 left-4 w-8 h-8 bg-tech-purple/70 rounded-full floating-3 opacity-60"></div>
-                <div className="absolute top-1/2 right-16 w-6 h-6 bg-primary/60 rounded-full floating-2 opacity-40"></div>
+                {/* Ambient Elements */}
+                <div className="absolute top-12 right-12 w-16 h-16 bg-gradient-to-br from-accent/40 to-tech-emerald/40 rounded-full floating-1 blur-sm"></div>
+                <div className="absolute bottom-16 left-8 w-12 h-12 bg-gradient-to-br from-tech-amber/50 to-primary/50 rounded-full floating-3 blur-sm"></div>
+                <div className="absolute top-1/2 right-20 w-8 h-8 bg-gradient-to-br from-tech-purple/40 to-tech-blue/40 rounded-full floating-2 blur-sm"></div>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Scroll Indicator */}
+        {/* Modern Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
           <div className="animate-bounce">
             <ChevronDown className="h-8 w-8 text-muted-foreground mx-auto" />
           </div>
-          <p className="text-xs text-muted-foreground mt-2">Scroll to explore</p>
+          <p className="text-xs text-muted-foreground mt-3 font-medium">Discover More</p>
         </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="section-padding bg-section-bg">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              A passionate technologist with a strong foundation in computer science and a creative approach to problem-solving.
+          <div className="text-center mb-20">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-gradient">About Me</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-balance">
+              Passionate about creating digital experiences that blend aesthetic beauty with functional excellence.
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg leading-relaxed">
-                I am a UI/UX designer, web developer, and coder, currently in my 4th year pursuing B.Tech at 
-                Jaypee University of Information Technology, Solan. I achieved 92% in Class 12 and 90% in Class 10 
-                from MRA DAV Public School, Solan.
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <p className="text-lg leading-relaxed text-balance">
+                I am a UI/UX designer, web developer, and AI/ML enthusiast, currently in my 4th year pursuing 
+                B.Tech at Jaypee University of Information Technology, Solan. I achieved 92% in Class 12 and 
+                90% in Class 10 from MRA DAV Public School, Solan.
               </p>
               
-              <p className="text-lg leading-relaxed">
-                My journey in technology has been driven by curiosity and the desire to create meaningful digital experiences. 
-                I combine technical expertise with creative design thinking to build solutions that not only work well but 
-                also delight users.
+              <p className="text-lg leading-relaxed text-balance">
+                My journey in technology has been driven by curiosity and the desire to create meaningful 
+                digital experiences. I combine technical expertise with creative design thinking to build 
+                solutions that not only work seamlessly but also delight users at every interaction.
+              </p>
+              
+              <p className="text-lg leading-relaxed text-balance">
+                With expertise spanning from AI/ML algorithms to intuitive user interfaces, I bridge the 
+                gap between complex technology and elegant user experiences.
               </p>
             </div>
             
