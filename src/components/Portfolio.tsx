@@ -585,9 +585,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">Deloitte</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Data Analytics Job Simulation</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   Real-world data analytics experience through comprehensive job simulation program.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/deloitte-certificate.avif';
+                    link.download = 'Deloitte_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
 
@@ -602,9 +615,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">Newton School</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Python Course</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   Comprehensive Python programming course covering fundamentals and advanced concepts.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/newton-python-certificate.avif';
+                    link.download = 'Newton_Python_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
 
@@ -619,9 +645,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">NPTEL</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Cloud Computing</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   Online certification covering cloud computing concepts and practical applications.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/nptel-cloud-certificate.avif';
+                    link.download = 'NPTEL_Cloud_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
 
@@ -636,9 +675,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">Udacity</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Generative AI with AWS</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   Introduction to generative AI technologies and AWS implementation strategies.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/udacity-genai-certificate.avif';
+                    link.download = 'Udacity_GenAI_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
 
@@ -653,9 +705,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">Udemy</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Python for Data Science & ML</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   Complete course covering Python for data science and machine learning applications.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/udemy-python-ml-certificate.avif';
+                    link.download = 'Udemy_Python_ML_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
 
@@ -670,9 +735,22 @@ const Portfolio = () => {
                   <Badge variant="outline" className="text-xs">Udemy</Badge>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">UI/UX with Figma & Adobe XD</h3>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-muted-foreground text-xs mb-3">
                   User interface and experience design using Figma and Adobe XD tools.
                 </p>
+                <Button 
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/src/assets/udemy-uiux-certificate.avif';
+                    link.download = 'Udemy_UIUX_Certificate_Piyush_Thakur.avif';
+                    link.click();
+                  }}
+                  variant="outline" 
+                  className="w-full group magnetic-btn text-xs py-2"
+                >
+                  <Award className="h-3 w-3 mr-2 group-hover:animate-pulse" />
+                  Download Certificate
+                </Button>
               </div>
             </Card>
           </div>
