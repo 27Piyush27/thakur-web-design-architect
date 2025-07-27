@@ -17,7 +17,7 @@ const Portfolio = () => {
   };
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "contact"];
+      const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "internships", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -54,6 +54,9 @@ const Portfolio = () => {
   }, {
     name: "Certificates",
     href: "certificates"
+  }, {
+    name: "Internships",
+    href: "internships"
   }, {
     name: "Contact",
     href: "contact"
@@ -609,6 +612,65 @@ const Portfolio = () => {
                 <p className="text-muted-foreground text-xs">
                   User interface and experience design using Figma and Adobe XD tools.
                 </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Internships Section */}
+      <section id="internships" className="section-padding bg-section-bg">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Internships</h2>
+            <p className="text-lg text-muted-foreground">
+              Professional internship experiences and practical learning achievements.
+            </p>
+          </div>
+          
+          <div className="max-w-2xl mx-auto">
+            {/* InternPE Web Development Internship */}
+            <Card className="overflow-hidden card-hover">
+              <div className="h-64 bg-gradient-to-br from-primary/10 to-tech-blue/10 p-6">
+                <img 
+                  src="/src/assets/internpe-certificate.png" 
+                  alt="InternPE Web Development Internship Certificate" 
+                  className="w-full h-full object-contain rounded-lg shadow-lg" 
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Briefcase className="h-5 w-5 text-primary" />
+                  <Badge variant="outline" className="text-sm">InternPE</Badge>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Web Development Internship</h3>
+                <p className="text-muted-foreground mb-4">
+                  Completed comprehensive web development internship program focusing on modern web technologies, 
+                  project development, and industry best practices.
+                </p>
+                <div className="flex gap-3">
+                  <a 
+                    href="https://drive.google.com/file/d/1VgTUdpvAbYmmW3hHoPl3kKo-FsN8DN4X/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center"
+                  >
+                    <Button variant="outline" className="glass-card">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      View Certificate
+                    </Button>
+                  </a>
+                  <a 
+                    href="https://drive.google.com/uc?export=download&id=1VgTUdpvAbYmmW3hHoPl3kKo-FsN8DN4X"
+                    download
+                    className="inline-flex items-center"
+                  >
+                    <Button className="btn-modern text-primary-foreground">
+                      <Award className="h-4 w-4 mr-2" />
+                      Download
+                    </Button>
+                  </a>
+                </div>
               </div>
             </Card>
           </div>
