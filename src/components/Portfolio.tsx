@@ -8,6 +8,9 @@ import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, Exter
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -15,8 +18,14 @@ const Portfolio = () => {
     });
     setIsMenuOpen(false);
   };
+
+  // Enhanced scroll handler with Apple-style smooth animations
   useEffect(() => {
     const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      setScrollY(scrollTop);
+
+      // Section detection
       const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "internships", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -29,9 +38,61 @@ const Portfolio = () => {
       if (currentSection) {
         setActiveSection(currentSection);
       }
+
+      // Animate elements on scroll
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      animateElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8;
+        
+        if (isVisible) {
+          element.classList.add('animate-in');
+        }
+      });
+
+      // Parallax effect for background elements
+      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      parallaxElements.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.2);
+        const yPos = -(scrollTop * speed);
+        (element as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Magnetic effect for buttons
+      const magneticElements = document.querySelectorAll('.magnetic-btn');
+      magneticElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const elementCenterX = rect.left + rect.width / 2;
+        const elementCenterY = rect.top + rect.height / 2;
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - elementCenterX, 2) + Math.pow(e.clientY - elementCenterY, 2)
+        );
+        
+        if (distance < 100) {
+          const strength = (100 - distance) / 100;
+          const deltaX = (e.clientX - elementCenterX) * strength * 0.3;
+          const deltaY = (e.clientY - elementCenterY) * strength * 0.3;
+          (element as HTMLElement).style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.05)`;
+        } else {
+          (element as HTMLElement).style.transform = 'translate(0px, 0px) scale(1)';
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    
+    // Initial scroll check
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
   const navigation = [{
     name: "Home",
@@ -138,17 +199,17 @@ const Portfolio = () => {
 
       {/* Enhanced Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 gradient-bg opacity-10"></div>
+        {/* Animated Background with Parallax */}
+        <div className="absolute inset-0 gradient-bg opacity-10 parallax-bg" style={{ transform: `translateY(${scrollY * 0.5}px)` }}></div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full floating-1 hidden lg:block"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-accent/30 rounded-full floating-2 hidden lg:block"></div>
-        <div className="absolute bottom-40 left-20 w-12 h-12 bg-tech-purple/25 rounded-full floating-3 hidden lg:block"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-tech-blue/20 rounded-full floating-1 hidden lg:block"></div>
+        {/* Enhanced Floating Elements with Parallax */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full parallax-element hidden lg:block" style={{ transform: `translateY(${scrollY * 0.3}px)` }}></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-accent/30 rounded-full parallax-element hidden lg:block" style={{ transform: `translateY(${scrollY * 0.4}px)` }}></div>
+        <div className="absolute bottom-40 left-20 w-12 h-12 bg-tech-purple/25 rounded-full parallax-element hidden lg:block" style={{ transform: `translateY(${scrollY * 0.2}px)` }}></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-tech-blue/20 rounded-full parallax-element hidden lg:block" style={{ transform: `translateY(${scrollY * 0.6}px)` }}></div>
         
-        {/* 3D Background */}
-        <div className="absolute inset-0 opacity-30">
+        {/* 3D Background with Parallax */}
+        <div className="absolute inset-0 opacity-30 parallax-bg" style={{ transform: `translateY(${scrollY * 0.2}px)` }}>
           <Hero3D />
         </div>
         
@@ -192,17 +253,17 @@ const Portfolio = () => {
               </div>
             </div>
                 
-                {/* Enhanced Buttons */}
+                {/* Enhanced Buttons with Apple-style animations */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button onClick={() => scrollToSection("projects")} className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold relative group">
+                  <Button onClick={() => scrollToSection("projects")} className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold relative group magnetic-btn">
                     <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
                     View My Work
                   </Button>
-                  <a href="https://drive.google.com/uc?export=download&id=1gcZ50WLe_ma7z_c5RjtRgOrAytrw-yyu" download="Piyush_Thakur_Resume.pdf" className="inline-flex items-center justify-center glass-card border-2 border-accent/30 hover:border-accent px-8 py-4 text-lg font-semibold group rounded-md transition-all hover:scale-105">
+                  <a href="https://drive.google.com/uc?export=download&id=1gcZ50WLe_ma7z_c5RjtRgOrAytrw-yyu" download="Piyush_Thakur_Resume.pdf" className="inline-flex items-center justify-center glass-enhanced border-2 border-accent/30 hover:border-accent px-8 py-4 text-lg font-semibold group rounded-md magnetic-btn">
                     <Star className="h-5 w-5 mr-2 group-hover:animate-spin" />
                     Download Resume
                   </a>
-                  <Button onClick={() => scrollToSection("contact")} variant="outline" className="glass-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold group">
+                  <Button onClick={() => scrollToSection("contact")} variant="outline" className="glass-enhanced border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold group magnetic-btn">
                     <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
                     Let's Talk
                   </Button>
@@ -286,7 +347,7 @@ const Portfolio = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section-padding bg-section-bg">
+      <section id="about" className="section-padding bg-section-bg animate-on-scroll">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-6 text-gradient">About Me</h2>
@@ -342,7 +403,7 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="section-padding">
+      <section id="experience" className="section-padding animate-on-scroll">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
