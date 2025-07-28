@@ -2,23 +2,26 @@ import { useState, useEffect, useRef, Suspense, lazy, memo, useCallback, useMemo
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LazyImage } from "@/components/LazyImage";
 import { Typewriter } from "@/components/Typewriter";
-import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain } from "lucide-react";
+import { LazyImage } from "@/components/LazyImage";
+import { useSmoothScroll } from "@/components/SmoothScroll";
+import { 
+  Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, 
+  ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, 
+  Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain 
+} from "lucide-react";
 
-// Lazy load heavy components for better performance
+// Lazy load heavy components
 const Hero3D = lazy(() => import("@/components/Hero3D"));
 
 // Loading fallback component
-const LoadingSpinner = memo(() => (
+const LoadingSpinner = () => (
   <div className="flex items-center justify-center h-64">
     <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
   </div>
-));
+);
 
-LoadingSpinner.displayName = 'LoadingSpinner';
-
-// Memoized section component for better performance
+// Memoized section components for better performance
 const MemoizedSection = memo(({ id, className, children }: {
   id: string;
   className?: string;
@@ -31,7 +34,7 @@ const MemoizedSection = memo(({ id, className, children }: {
 
 MemoizedSection.displayName = 'MemoizedSection';
 
-const Portfolio = () => {
+const OptimizedPortfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -40,15 +43,65 @@ const Portfolio = () => {
   // Use refs for better performance
   const navigationRef = useRef<HTMLElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  
+  // Initialize smooth scroll
+  useSmoothScroll();
 
-  // Optimized scroll handler with useCallback to prevent re-renders
+  // Memoized data to prevent re-renders
+  const navigation = useMemo(() => [
+    { name: "Home", href: "home" },
+    { name: "About", href: "about" },
+    { name: "Experience", href: "experience" },
+    { name: "Skills", href: "skills" },
+    { name: "Services", href: "services" },
+    { name: "Projects", href: "projects" },
+    { name: "Certificates", href: "certificates" },
+    { name: "Internships", href: "internships" },
+    { name: "Contact", href: "contact" }
+  ], []);
+
+  const skills = useMemo(() => [
+    { category: "Languages", items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"] },
+    { category: "Frameworks", items: ["React", "MERN Stack", "Git", "GitHub"] },
+    { category: "Expertise", items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"] }
+  ], []);
+
+  const services = useMemo(() => [
+    {
+      icon: <Palette className="h-8 w-8" />,
+      title: "UI/UX Design",
+      description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
+    },
+    {
+      icon: <Code2 className="h-8 w-8" />,
+      title: "Frontend Development",
+      description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
+    },
+    {
+      icon: <Brain className="h-8 w-8" />,
+      title: "AI/ML & Data Analytics",
+      description: "Developing intelligent solutions using machine learning algorithms and providing data-driven insights for informed decision making."
+    },
+    {
+      icon: <Globe className="h-8 w-8" />,
+      title: "Backend Development",
+      description: "Developing robust server-side applications with secure APIs and efficient database management systems."
+    },
+    {
+      icon: <Smartphone className="h-8 w-8" />,
+      title: "Full Stack Development",
+      description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
+    }
+  ], []);
+
+  // Optimized scroll handler with throttling
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
   }, []);
 
-  // Optimized scroll handler with throttling and Intersection Observer
+  // Throttled scroll handler for better performance
   useEffect(() => {
     let ticking = false;
     
@@ -58,7 +111,7 @@ const Portfolio = () => {
           const scrollTop = window.pageYOffset;
           setScrollY(scrollTop);
 
-          // Use Intersection Observer for better performance
+          // Optimized section detection using Intersection Observer
           if (!observerRef.current) {
             observerRef.current = new IntersectionObserver(
               (entries) => {
@@ -72,9 +125,8 @@ const Portfolio = () => {
             );
 
             // Observe all sections
-            const sections = ["home", "about", "experience", "skills", "services", "projects", "certificates", "internships", "contact"];
-            sections.forEach((sectionId) => {
-              const element = document.getElementById(sectionId);
+            navigation.forEach(({ href }) => {
+              const element = document.getElementById(href);
               if (element) observerRef.current?.observe(element);
             });
           }
@@ -137,84 +189,19 @@ const Portfolio = () => {
       observerRef.current?.disconnect();
       clearTimeout(mouseTimeout);
     };
-  }, []);
-
-  // Memoized data to prevent unnecessary re-renders
-  const navigation = useMemo(() => [
-    { name: "Home", href: "home" },
-    { name: "About", href: "about" },
-    { name: "Experience", href: "experience" },
-    { name: "Skills", href: "skills" },
-    { name: "Services", href: "services" },
-    { name: "Projects", href: "projects" },
-    { name: "Certificates", href: "certificates" },
-    { name: "Internships", href: "internships" },
-    { name: "Contact", href: "contact" }
-  ], []);
-
-  const skills = useMemo(() => [
-    { category: "Languages", items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"] },
-    { category: "Frameworks", items: ["React", "MERN Stack", "Git", "GitHub"] },
-    { category: "Expertise", items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"] }
-  ], []);
-
-  const services = useMemo(() => [
-    {
-      icon: <Palette className="h-8 w-8" />,
-      title: "UI/UX Design",
-      description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
-    },
-    {
-      icon: <Code2 className="h-8 w-8" />,
-      title: "Frontend Development",
-      description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
-    },
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: "AI/ML & Data Analytics",
-      description: "Developing intelligent solutions using machine learning algorithms and providing data-driven insights for informed decision making."
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Backend Development",
-      description: "Developing robust server-side applications with secure APIs and efficient database management systems."
-    },
-    {
-      icon: <Smartphone className="h-8 w-8" />,
-      title: "Full Stack Development",
-      description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
-    }
-  ], []);
-
-  const projects = useMemo(() => [
-    {
-      title: "House Price Prediction",
-      description: "A machine learning model that estimates real estate prices based on various features like location, size, and amenities.",
-      tech: ["Python", "ML", "Data Analysis"],
-      image: "/api/placeholder/400/250"
-    },
-    {
-      title: "E-commerce Website",
-      description: "A fully functional online store with frontend and backend integration, featuring user authentication and payment processing.",
-      tech: ["React", "Node.js", "MongoDB"],
-      image: "/api/placeholder/400/250"
-    }
-  ], []);
+  }, [navigation]);
 
   return (
     <div className="min-h-screen bg-background">
       {/* Optimized Navigation */}
       <nav 
         ref={navigationRef}
-        className="fixed top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border transition-transform duration-300"
-        style={{ transform: `translateY(${Math.max(-100, scrollY * -0.05)}px)` }}
+        className="fixed top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border"
+        style={{ transform: `translateY(${Math.max(-100, scrollY * -0.1)}px)` }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div 
-              className="font-bold text-xl gradient-text cursor-pointer transition-transform hover:scale-105" 
-              onClick={() => scrollToSection('home')}
-            >
+            <div className="font-bold text-xl gradient-text cursor-pointer" onClick={() => scrollToSection('home')}>
               Piyush Thakur
             </div>
             
@@ -232,7 +219,7 @@ const Portfolio = () => {
                 >
                   {item.name}
                   {activeSection === item.href && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-fade-in" />
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-scale-in" />
                   )}
                 </button>
               ))}
@@ -270,7 +257,7 @@ const Portfolio = () => {
       </nav>
 
       {/* Optimized Hero Section */}
-      <MemoizedSection id="home" className="relative min-h-screen flex items-center overflow-hidden animate-on-scroll">
+      <MemoizedSection id="home" className="relative min-h-screen flex items-center overflow-hidden">
         {/* Simplified Background Elements */}
         <div className="absolute inset-0 gradient-bg opacity-5" />
         
@@ -283,7 +270,7 @@ const Portfolio = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto w-full section-padding pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 animate-on-scroll">
               {/* Glass Card with Content */}
               <div className="glass-card rounded-2xl p-8 space-y-6">
                 <div className="space-y-4">
@@ -350,7 +337,7 @@ const Portfolio = () => {
             </div>
             
             {/* Right Side - Optimized Avatar */}
-            <div className="flex justify-center lg:justify-end relative">
+            <div className="flex justify-center lg:justify-end relative animate-on-scroll">
               <div className="relative w-full max-w-lg">
                 <div className="aspect-square relative">
                   <div className="absolute inset-0 rounded-full gradient-bg p-2 floating-1">
@@ -433,4 +420,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default OptimizedPortfolio;
