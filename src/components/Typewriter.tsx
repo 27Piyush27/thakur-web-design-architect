@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TypewriterProps {
   texts: string[];
@@ -12,7 +12,7 @@ export function Typewriter({ texts, speed = 100, deleteSpeed = 50, pauseDuration
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     let timeout: NodeJS.Timeout;
     
     const type = () => {
