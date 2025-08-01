@@ -35,7 +35,7 @@ export function Typewriter({ texts, speed = 100, deleteSpeed = 50, pauseDuration
     
     timeout = setTimeout(type, 500);
     return () => clearTimeout(timeout);
-  });
+  }, [texts, currentIndex, currentText, isDeleting, pauseDuration, deleteSpeed, speed]);
 
   return (
     <span className="inline-block">

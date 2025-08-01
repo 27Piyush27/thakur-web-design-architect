@@ -1,7 +1,7 @@
-import Portfolio from "@/components/Portfolio";
+import OptimizedPortfolio from "@/components/OptimizedPortfolio";
 
 const Index = () => {
-  return <Portfolio />;
+  return <OptimizedPortfolio />;
 };
 
 export default Index;

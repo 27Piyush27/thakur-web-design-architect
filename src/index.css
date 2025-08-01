@@ -292,6 +292,14 @@ All colors MUST be HSL.
     @apply py-24 px-6 md:px-12 lg:px-20;
   }
   
+  /* Glass enhanced effect */
+  .glass-enhanced {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
   /* Magnetic button effect */
   .magnetic-btn {
     transition: var(--transition-spring);
