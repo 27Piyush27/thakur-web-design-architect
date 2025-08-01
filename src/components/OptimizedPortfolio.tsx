@@ -5,106 +5,118 @@ import { Badge } from "@/components/ui/badge";
 import { Typewriter } from "@/components/Typewriter";
 import { LazyImage } from "@/components/LazyImage";
 import { useSmoothScroll } from "@/components/SmoothScroll";
-import { 
-  Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, 
-  ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, 
-  Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain 
-} from "lucide-react";
+import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain } from "lucide-react";
 
 // Lazy load heavy components
 const Hero3D = lazy(() => import("@/components/Hero3D"));
 
 // Loading fallback component
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center h-64">
+const LoadingSpinner = () => <div className="flex items-center justify-center h-64">
     <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-  </div>
-);
+  </div>;
 
 // Memoized section components for better performance
-const MemoizedSection = memo(({ id, className, children }: {
+const MemoizedSection = memo(({
+  id,
+  className,
+  children
+}: {
   id: string;
   className?: string;
   children: React.ReactNode;
-}) => (
-  <section id={id} className={className}>
+}) => <section id={id} className={className}>
     {children}
-  </section>
-));
-
+  </section>);
 MemoizedSection.displayName = 'MemoizedSection';
-
 const OptimizedPortfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0
+  });
   const [scrollY, setScrollY] = useState(0);
-  
+
   // Use refs for better performance
   const navigationRef = useRef<HTMLElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
-  
+
   // Initialize smooth scroll
   useSmoothScroll();
 
   // Memoized data to prevent re-renders
-  const navigation = useMemo(() => [
-    { name: "Home", href: "home" },
-    { name: "About", href: "about" },
-    { name: "Experience", href: "experience" },
-    { name: "Skills", href: "skills" },
-    { name: "Services", href: "services" },
-    { name: "Projects", href: "projects" },
-    { name: "Certificates", href: "certificates" },
-    { name: "Internships", href: "internships" },
-    { name: "Contact", href: "contact" }
-  ], []);
-
-  const skills = useMemo(() => [
-    { category: "Languages", items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"] },
-    { category: "Frameworks", items: ["React", "MERN Stack", "Git", "GitHub"] },
-    { category: "Expertise", items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"] }
-  ], []);
-
-  const services = useMemo(() => [
-    {
-      icon: <Palette className="h-8 w-8" />,
-      title: "UI/UX Design",
-      description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
-    },
-    {
-      icon: <Code2 className="h-8 w-8" />,
-      title: "Frontend Development",
-      description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
-    },
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: "AI/ML & Data Analytics",
-      description: "Developing intelligent solutions using machine learning algorithms and providing data-driven insights for informed decision making."
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Backend Development",
-      description: "Developing robust server-side applications with secure APIs and efficient database management systems."
-    },
-    {
-      icon: <Smartphone className="h-8 w-8" />,
-      title: "Full Stack Development",
-      description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
-    }
-  ], []);
+  const navigation = useMemo(() => [{
+    name: "Home",
+    href: "home"
+  }, {
+    name: "About",
+    href: "about"
+  }, {
+    name: "Experience",
+    href: "experience"
+  }, {
+    name: "Skills",
+    href: "skills"
+  }, {
+    name: "Services",
+    href: "services"
+  }, {
+    name: "Projects",
+    href: "projects"
+  }, {
+    name: "Certificates",
+    href: "certificates"
+  }, {
+    name: "Internships",
+    href: "internships"
+  }, {
+    name: "Contact",
+    href: "contact"
+  }], []);
+  const skills = useMemo(() => [{
+    category: "Languages",
+    items: ["C++", "C", "Python", "MATLAB", "HTML", "CSS", "JavaScript"]
+  }, {
+    category: "Frameworks",
+    items: ["React", "MERN Stack", "Git", "GitHub"]
+  }, {
+    category: "Expertise",
+    items: ["Frontend Development", "Backend Development", "UI/UX Design", "AI & ML", "DSA", "OS", "CN", "Compiler Design"]
+  }], []);
+  const services = useMemo(() => [{
+    icon: <Palette className="h-8 w-8" />,
+    title: "UI/UX Design",
+    description: "Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement."
+  }, {
+    icon: <Code2 className="h-8 w-8" />,
+    title: "Frontend Development",
+    description: "Building responsive and interactive web applications using modern frameworks like React and cutting-edge technologies."
+  }, {
+    icon: <Brain className="h-8 w-8" />,
+    title: "AI/ML & Data Analytics",
+    description: "Developing intelligent solutions using machine learning algorithms and providing data-driven insights for informed decision making."
+  }, {
+    icon: <Globe className="h-8 w-8" />,
+    title: "Backend Development",
+    description: "Developing robust server-side applications with secure APIs and efficient database management systems."
+  }, {
+    icon: <Smartphone className="h-8 w-8" />,
+    title: "Full Stack Development",
+    description: "End-to-end web development solutions combining frontend and backend technologies for complete digital products."
+  }], []);
 
   // Optimized scroll handler with throttling
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({
+      behavior: "smooth"
+    });
     setIsMenuOpen(false);
   }, []);
 
   // Throttled scroll handler for better performance
   useEffect(() => {
     let ticking = false;
-    
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -113,19 +125,21 @@ const OptimizedPortfolio = () => {
 
           // Optimized section detection using Intersection Observer
           if (!observerRef.current) {
-            observerRef.current = new IntersectionObserver(
-              (entries) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                    setActiveSection(entry.target.id);
-                  }
-                });
-              },
-              { threshold: [0.5], rootMargin: '-50px 0px' }
-            );
+            observerRef.current = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                  setActiveSection(entry.target.id);
+                }
+              });
+            }, {
+              threshold: [0.5],
+              rootMargin: '-50px 0px'
+            });
 
             // Observe all sections
-            navigation.forEach(({ href }) => {
+            navigation.forEach(({
+              href
+            }) => {
               const element = document.getElementById(href);
               if (element) observerRef.current?.observe(element);
             });
@@ -133,13 +147,12 @@ const OptimizedPortfolio = () => {
 
           // Efficient animation handling
           const animateElements = document.querySelectorAll('.animate-on-scroll:not(.animate-in)');
-          animateElements.forEach((element) => {
+          animateElements.forEach(element => {
             const rect = element.getBoundingClientRect();
             if (rect.top < window.innerHeight * 0.8) {
               element.classList.add('animate-in');
             }
           });
-
           ticking = false;
         });
         ticking = true;
@@ -151,18 +164,18 @@ const OptimizedPortfolio = () => {
     const handleMouseMove = (e: MouseEvent) => {
       clearTimeout(mouseTimeout);
       mouseTimeout = setTimeout(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-        
+        setMousePosition({
+          x: e.clientX,
+          y: e.clientY
+        });
+
         // Magnetic effect with requestAnimationFrame for smooth performance
         const magneticElements = document.querySelectorAll('.magnetic-btn');
-        magneticElements.forEach((element) => {
+        magneticElements.forEach(element => {
           const rect = element.getBoundingClientRect();
           const elementCenterX = rect.left + rect.width / 2;
           const elementCenterY = rect.top + rect.height / 2;
-          const distance = Math.sqrt(
-            Math.pow(e.clientX - elementCenterX, 2) + Math.pow(e.clientY - elementCenterY, 2)
-          );
-          
+          const distance = Math.sqrt(Math.pow(e.clientX - elementCenterX, 2) + Math.pow(e.clientY - elementCenterY, 2));
           requestAnimationFrame(() => {
             if (distance < 100) {
               const strength = (100 - distance) / 100;
@@ -176,13 +189,15 @@ const OptimizedPortfolio = () => {
         });
       }, 10);
     };
+    window.addEventListener("scroll", handleScroll, {
+      passive: true
+    });
+    window.addEventListener("mousemove", handleMouseMove, {
+      passive: true
+    });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    
     // Initial scroll check
     handleScroll();
-    
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
@@ -190,21 +205,15 @@ const OptimizedPortfolio = () => {
       clearTimeout(mouseTimeout);
     };
   }, [navigation]);
-
-  return (
-    <div className="min-h-screen bg-background liquid-background">
+  return <div className="min-h-screen bg-background liquid-background">
       {/* Floating Bubbles */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        {[...Array(9)].map((_, i) => (
-          <div key={i} className="floating-bubble" />
-        ))}
+        {[...Array(9)].map((_, i) => <div key={i} className="floating-bubble" />)}
       </div>
       {/* Optimized Navigation */}
-      <nav 
-        ref={navigationRef}
-        className="fixed top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border"
-        style={{ transform: `translateY(${Math.max(-100, scrollY * -0.1)}px)` }}
-      >
+      <nav ref={navigationRef} className="fixed top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border" style={{
+      transform: `translateY(${Math.max(-100, scrollY * -0.1)}px)`
+    }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="font-bold text-xl gradient-text cursor-pointer" onClick={() => scrollToSection('home')}>
@@ -213,31 +222,15 @@ const OptimizedPortfolio = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-6">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 relative ${
-                    activeSection === item.href 
-                      ? "text-primary" 
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
+              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className={`px-3 py-2 text-sm font-medium transition-all duration-200 relative ${activeSection === item.href ? "text-primary" : "text-muted-foreground hover:text-primary"}`}>
                   {item.name}
-                  {activeSection === item.href && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-scale-in" />
-                  )}
-                </button>
-              ))}
+                  {activeSection === item.href && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-scale-in" />}
+                </button>)}
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                className="p-2 rounded-md text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Toggle menu"
-              >
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-muted-foreground hover:text-primary transition-colors" aria-label="Toggle menu">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
@@ -245,21 +238,13 @@ const OptimizedPortfolio = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-sm border-b border-border animate-fade-in">
+        {isMenuOpen && <div className="md:hidden bg-background/95 backdrop-blur-sm border-b border-border animate-fade-in">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary w-full text-left transition-colors"
-                >
+              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary w-full text-left transition-colors">
                   {item.name}
-                </button>
-              ))}
+                </button>)}
             </div>
-          </div>
-        )}
+          </div>}
       </nav>
 
       {/* Optimized Hero Section */}
@@ -291,12 +276,7 @@ const OptimizedPortfolio = () => {
                   </h1>
                   
                   <div className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground min-h-[3rem]">
-                    <Typewriter 
-                      texts={["UI/UX Designer", "Web Developer", "Full Stack Developer", "Problem Solver"]} 
-                      speed={100} 
-                      deleteSpeed={50} 
-                      pauseDuration={2000} 
-                    />
+                    <Typewriter texts={["UI/UX Designer", "Web Developer", "Full Stack Developer", "Problem Solver"]} speed={100} deleteSpeed={50} pauseDuration={2000} />
                   </div>
                 </div>
                 
@@ -323,18 +303,11 @@ const OptimizedPortfolio = () => {
                 
                 {/* Enhanced Liquid Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    onClick={() => scrollToSection("projects")} 
-                    className="liquid-button liquid-ripple text-primary-foreground px-8 py-4 text-lg font-semibold magnetic-btn group"
-                  >
+                  <Button onClick={() => scrollToSection("projects")} className="liquid-button liquid-ripple text-primary-foreground px-8 py-4 text-lg font-semibold magnetic-btn group">
                     <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
                     View My Work
                   </Button>
-                  <Button 
-                    onClick={() => scrollToSection("contact")} 
-                    variant="outline" 
-                    className="liquid-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold magnetic-btn group liquid-ripple"
-                  >
+                  <Button onClick={() => scrollToSection("contact")} variant="outline" className="liquid-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold magnetic-btn group liquid-ripple">
                     <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
                     Let's Talk
                   </Button>
@@ -477,18 +450,14 @@ const OptimizedPortfolio = () => {
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Skills & Expertise</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skillCategory, index) => (
-              <Card key={index} className="glass-card p-8 hover:scale-105 transition-transform">
+            {skills.map((skillCategory, index) => <Card key={index} className="glass-card p-8 hover:scale-105 transition-transform">
                 <h3 className="text-xl font-bold mb-6 text-center">{skillCategory.category}</h3>
                 <div className="flex flex-wrap gap-3">
-                  {skillCategory.items.map((skill, skillIndex) => (
-                    <Badge key={skillIndex} className="skill-badge">
+                  {skillCategory.items.map((skill, skillIndex) => <Badge key={skillIndex} className="skill-badge">
                       {skill}
-                    </Badge>
-                  ))}
+                    </Badge>)}
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </MemoizedSection>
@@ -499,8 +468,7 @@ const OptimizedPortfolio = () => {
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Services</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="glass-card p-8 text-center hover:scale-105 transition-transform group">
+            {services.map((service, index) => <Card key={index} className="glass-card p-8 text-center hover:scale-105 transition-transform group">
                 <div className="mb-6 flex justify-center">
                   <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                     {service.icon}
@@ -508,8 +476,7 @@ const OptimizedPortfolio = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </MemoizedSection>
@@ -581,138 +548,90 @@ const OptimizedPortfolio = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/udacity-genai-certificate.avif" 
-                alt="Udacity GenAI Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/udacity-genai-certificate.avif" alt="Udacity GenAI Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">Generative AI</h3>
               <p className="text-muted-foreground text-sm mb-4">Udacity</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/udacity-genai-certificate.avif';
-                  link.download = 'udacity-genai-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/udacity-genai-certificate.avif';
+              link.download = 'udacity-genai-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
             </Card>
 
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/udemy-python-ml-certificate.avif" 
-                alt="Python ML Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/udemy-python-ml-certificate.avif" alt="Python ML Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">Python & Machine Learning</h3>
               <p className="text-muted-foreground text-sm mb-4">Udemy</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/udemy-python-ml-certificate.avif';
-                  link.download = 'udemy-python-ml-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/udemy-python-ml-certificate.avif';
+              link.download = 'udemy-python-ml-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
             </Card>
 
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/udemy-uiux-certificate.avif" 
-                alt="UI/UX Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/udemy-uiux-certificate.avif" alt="UI/UX Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">UI/UX Design</h3>
               <p className="text-muted-foreground text-sm mb-4">Udemy</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/udemy-uiux-certificate.avif';
-                  link.download = 'udemy-uiux-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/udemy-uiux-certificate.avif';
+              link.download = 'udemy-uiux-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
             </Card>
 
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/nptel-cloud-certificate.avif" 
-                alt="Cloud Computing Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/nptel-cloud-certificate.avif" alt="Cloud Computing Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">Cloud Computing</h3>
               <p className="text-muted-foreground text-sm mb-4">NPTEL</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/nptel-cloud-certificate.avif';
-                  link.download = 'nptel-cloud-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/nptel-cloud-certificate.avif';
+              link.download = 'nptel-cloud-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
             </Card>
 
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/newton-python-certificate.avif" 
-                alt="Python Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/newton-python-certificate.avif" alt="Python Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">Python Programming</h3>
               <p className="text-muted-foreground text-sm mb-4">Newton School</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/newton-python-certificate.avif';
-                  link.download = 'newton-python-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/newton-python-certificate.avif';
+              link.download = 'newton-python-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
             </Card>
 
             <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage 
-                src="/src/assets/deloitte-certificate.avif" 
-                alt="Deloitte Certificate"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
+              <LazyImage src="/src/assets/deloitte-certificate.avif" alt="Deloitte Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-bold mb-2">Business Analytics</h3>
               <p className="text-muted-foreground text-sm mb-4">Deloitte</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/deloitte-certificate.avif';
-                  link.download = 'deloitte-certificate.avif';
-                  link.click();
-                }}
-              >
+              <Button variant="outline" className="w-full" onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/src/assets/deloitte-certificate.avif';
+              link.download = 'deloitte-certificate.avif';
+              link.click();
+            }}>
                 <Award className="h-4 w-4 mr-2" />
                 Download
               </Button>
@@ -729,11 +648,7 @@ const OptimizedPortfolio = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="glass-card p-8 hover:scale-105 transition-transform">
               <div className="flex items-start gap-6">
-                <LazyImage 
-                  src="/src/assets/intel-certificate.avif" 
-                  alt="Intel"
-                  className="w-16 h-16 object-cover rounded-lg"
-                />
+                <LazyImage src="/src/assets/intel-certificate.avif" alt="Intel" className="w-16 h-16 object-cover rounded-lg" />
                 <div className="flex-1">
                   <h3 className="text-xl font-bold mb-2">Software Development Intern</h3>
                   <p className="text-primary font-medium mb-2">Intel Corporation</p>
@@ -745,16 +660,12 @@ const OptimizedPortfolio = () => {
                     Worked on optimizing software performance and contributing to Intel's development tools. 
                     Gained experience in low-level programming and hardware-software integration.
                   </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = '/src/assets/intel-certificate.avif';
-                      link.download = 'intel-certificate.avif';
-                      link.click();
-                    }}
-                  >
+                  <Button variant="outline" size="sm" onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/intel-certificate.avif';
+                  link.download = 'intel-certificate.avif';
+                  link.click();
+                }}>
                     <Award className="h-4 w-4 mr-2" />
                     Certificate
                   </Button>
@@ -764,11 +675,7 @@ const OptimizedPortfolio = () => {
 
             <Card className="glass-card p-8 hover:scale-105 transition-transform">
               <div className="flex items-start gap-6">
-                <LazyImage 
-                  src="/src/assets/internpe-certificate.png" 
-                  alt="InternPe"
-                  className="w-16 h-16 object-cover rounded-lg"
-                />
+                <LazyImage src="/src/assets/internpe-certificate.png" alt="InternPe" className="w-16 h-16 object-cover rounded-lg" />
                 <div className="flex-1">
                   <h3 className="text-xl font-bold mb-2">Web Development Intern</h3>
                   <p className="text-primary font-medium mb-2">InternPe</p>
@@ -780,16 +687,12 @@ const OptimizedPortfolio = () => {
                     Developed responsive web applications using modern frameworks. 
                     Collaborated with cross-functional teams to deliver high-quality digital solutions.
                   </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = '/src/assets/internpe-certificate.png';
-                      link.download = 'internpe-certificate.png';
-                      link.click();
-                    }}
-                  >
+                  <Button variant="outline" size="sm" onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/internpe-certificate.png';
+                  link.download = 'internpe-certificate.png';
+                  link.click();
+                }}>
                     <Award className="h-4 w-4 mr-2" />
                     Certificate
                   </Button>
@@ -818,7 +721,7 @@ const OptimizedPortfolio = () => {
             <Card className="glass-card p-6 text-center group hover:scale-105 transition-transform">
               <Phone className="h-8 w-8 mx-auto mb-4 text-primary group-hover:animate-pulse" />
               <h3 className="font-semibold mb-2">Phone</h3>
-              <p className="text-muted-foreground text-sm">+91 8219806476</p>
+              <p className="text-muted-foreground text-sm">+91 8580630951</p>
             </Card>
             
             <Card className="glass-card p-6 text-center group hover:scale-105 transition-transform">
@@ -844,8 +747,6 @@ const OptimizedPortfolio = () => {
           </div>
         </div>
       </MemoizedSection>
-    </div>
-  );
+    </div>;
 };
-
 export default OptimizedPortfolio;
