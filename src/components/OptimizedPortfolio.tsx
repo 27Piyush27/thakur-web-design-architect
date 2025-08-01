@@ -372,6 +372,428 @@ const OptimizedPortfolio = () => {
         </div>
       </MemoizedSection>
 
+      {/* About Section */}
+      <MemoizedSection id="about" className="section-padding animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">About Me</h2>
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="glass-card p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Star className="h-6 w-6 text-primary" />
+                  My Journey
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  I'm a passionate B.Tech student at JUIT Solan with a deep love for technology and innovation. 
+                  My journey in the world of programming began with curiosity and has evolved into expertise across 
+                  multiple domains including web development, AI/ML, and data analytics.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  I believe in creating digital solutions that not only solve problems but also enhance user experiences. 
+                  My approach combines technical excellence with creative design thinking.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="glass-card p-6 text-center">
+                  <GraduationCap className="h-8 w-8 mx-auto mb-3 text-primary" />
+                  <h4 className="font-semibold mb-2">Education</h4>
+                  <p className="text-sm text-muted-foreground">B.Tech at JUIT Solan</p>
+                </Card>
+                <Card className="glass-card p-6 text-center">
+                  <MapPin className="h-8 w-8 mx-auto mb-3 text-primary" />
+                  <h4 className="font-semibold mb-2">Location</h4>
+                  <p className="text-sm text-muted-foreground">Himachal Pradesh</p>
+                </Card>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-square relative">
+                <div className="absolute inset-0 rounded-2xl gradient-bg p-1 floating-1">
+                  <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center shadow-elegant">
+                    <div className="w-4/5 h-4/5 rounded-2xl bg-gradient-to-br from-primary via-tech-purple to-tech-emerald flex items-center justify-center text-white relative overflow-hidden">
+                      <span className="relative z-10 text-8xl font-serif font-bold">PT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Experience Section */}
+      <MemoizedSection id="experience" className="section-padding bg-section-bg animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Experience</h2>
+          
+          <div className="space-y-8">
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="flex items-start gap-6">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Briefcase className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Frontend Developer</h3>
+                  <p className="text-primary font-medium mb-2">Freelance • 2022 - Present</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Developed responsive web applications using React, JavaScript, and modern CSS frameworks. 
+                    Collaborated with clients to create user-friendly interfaces and optimize user experiences.
+                  </p>
+                </div>
+              </div>
+            </Card>
+            
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="flex items-start gap-6">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Code2 className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Web Development Intern</h3>
+                  <p className="text-primary font-medium mb-2">Various Companies • 2023</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Gained hands-on experience in full-stack development, working with MERN stack technologies 
+                    and contributing to real-world projects.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Skills Section */}
+      <MemoizedSection id="skills" className="section-padding animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Skills & Expertise</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {skills.map((skillCategory, index) => (
+              <Card key={index} className="glass-card p-8 hover:scale-105 transition-transform">
+                <h3 className="text-xl font-bold mb-6 text-center">{skillCategory.category}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {skillCategory.items.map((skill, skillIndex) => (
+                    <Badge key={skillIndex} className="skill-badge">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Services Section */}
+      <MemoizedSection id="services" className="section-padding bg-section-bg animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Services</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="glass-card p-8 text-center hover:scale-105 transition-transform group">
+                <div className="mb-6 flex justify-center">
+                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    {service.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Projects Section */}
+      <MemoizedSection id="projects" className="section-padding animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Featured Projects</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="glass-card p-6 hover:scale-105 transition-transform group">
+              <div className="aspect-video bg-gradient-to-br from-primary to-tech-blue rounded-lg mb-6 flex items-center justify-center">
+                <Globe className="h-12 w-12 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-3">E-Commerce Platform</h3>
+              <p className="text-muted-foreground mb-4">Full-stack e-commerce solution built with MERN stack</p>
+              <div className="flex gap-2 mb-4">
+                <Badge variant="secondary">React</Badge>
+                <Badge variant="secondary">Node.js</Badge>
+                <Badge variant="secondary">MongoDB</Badge>
+              </div>
+              <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Project
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform group">
+              <div className="aspect-video bg-gradient-to-br from-tech-emerald to-accent rounded-lg mb-6 flex items-center justify-center">
+                <Brain className="h-12 w-12 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-3">AI Data Analytics</h3>
+              <p className="text-muted-foreground mb-4">Machine learning dashboard for data visualization</p>
+              <div className="flex gap-2 mb-4">
+                <Badge variant="secondary">Python</Badge>
+                <Badge variant="secondary">ML</Badge>
+                <Badge variant="secondary">React</Badge>
+              </div>
+              <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Project
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform group">
+              <div className="aspect-video bg-gradient-to-br from-tech-purple to-primary rounded-lg mb-6 flex items-center justify-center">
+                <Smartphone className="h-12 w-12 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Mobile App UI</h3>
+              <p className="text-muted-foreground mb-4">Modern mobile app design with smooth animations</p>
+              <div className="flex gap-2 mb-4">
+                <Badge variant="secondary">UI/UX</Badge>
+                <Badge variant="secondary">Figma</Badge>
+                <Badge variant="secondary">React Native</Badge>
+              </div>
+              <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Project
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Certificates Section */}
+      <MemoizedSection id="certificates" className="section-padding bg-section-bg animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Certifications</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/udacity-genai-certificate.avif" 
+                alt="Udacity GenAI Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">Generative AI</h3>
+              <p className="text-muted-foreground text-sm mb-4">Udacity</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/udacity-genai-certificate.avif';
+                  link.download = 'udacity-genai-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/udemy-python-ml-certificate.avif" 
+                alt="Python ML Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">Python & Machine Learning</h3>
+              <p className="text-muted-foreground text-sm mb-4">Udemy</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/udemy-python-ml-certificate.avif';
+                  link.download = 'udemy-python-ml-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/udemy-uiux-certificate.avif" 
+                alt="UI/UX Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">UI/UX Design</h3>
+              <p className="text-muted-foreground text-sm mb-4">Udemy</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/udemy-uiux-certificate.avif';
+                  link.download = 'udemy-uiux-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/nptel-cloud-certificate.avif" 
+                alt="Cloud Computing Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">Cloud Computing</h3>
+              <p className="text-muted-foreground text-sm mb-4">NPTEL</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/nptel-cloud-certificate.avif';
+                  link.download = 'nptel-cloud-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/newton-python-certificate.avif" 
+                alt="Python Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">Python Programming</h3>
+              <p className="text-muted-foreground text-sm mb-4">Newton School</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/newton-python-certificate.avif';
+                  link.download = 'newton-python-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+
+            <Card className="glass-card p-6 hover:scale-105 transition-transform">
+              <LazyImage 
+                src="/src/assets/deloitte-certificate.avif" 
+                alt="Deloitte Certificate"
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h3 className="font-bold mb-2">Business Analytics</h3>
+              <p className="text-muted-foreground text-sm mb-4">Deloitte</p>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/deloitte-certificate.avif';
+                  link.download = 'deloitte-certificate.avif';
+                  link.click();
+                }}
+              >
+                <Award className="h-4 w-4 mr-2" />
+                Download
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </MemoizedSection>
+
+      {/* Internships Section */}
+      <MemoizedSection id="internships" className="section-padding animate-on-scroll">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Internships</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="flex items-start gap-6">
+                <LazyImage 
+                  src="/src/assets/intel-certificate.avif" 
+                  alt="Intel"
+                  className="w-16 h-16 object-cover rounded-lg"
+                />
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Software Development Intern</h3>
+                  <p className="text-primary font-medium mb-2">Intel Corporation</p>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    <Calendar className="h-4 w-4 inline mr-2" />
+                    Summer 2023
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Worked on optimizing software performance and contributing to Intel's development tools. 
+                    Gained experience in low-level programming and hardware-software integration.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/src/assets/intel-certificate.avif';
+                      link.download = 'intel-certificate.avif';
+                      link.click();
+                    }}
+                  >
+                    <Award className="h-4 w-4 mr-2" />
+                    Certificate
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="glass-card p-8 hover:scale-105 transition-transform">
+              <div className="flex items-start gap-6">
+                <LazyImage 
+                  src="/src/assets/internpe-certificate.png" 
+                  alt="InternPe"
+                  className="w-16 h-16 object-cover rounded-lg"
+                />
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">Web Development Intern</h3>
+                  <p className="text-primary font-medium mb-2">InternPe</p>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    <Calendar className="h-4 w-4 inline mr-2" />
+                    Winter 2023
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Developed responsive web applications using modern frameworks. 
+                    Collaborated with cross-functional teams to deliver high-quality digital solutions.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/src/assets/internpe-certificate.png';
+                      link.download = 'internpe-certificate.png';
+                      link.click();
+                    }}
+                  >
+                    <Award className="h-4 w-4 mr-2" />
+                    Certificate
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </MemoizedSection>
+
       {/* Contact Section */}
       <MemoizedSection id="contact" className="section-padding bg-section-bg animate-on-scroll">
         <div className="max-w-4xl mx-auto text-center">
