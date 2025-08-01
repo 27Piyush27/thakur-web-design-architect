@@ -192,7 +192,13 @@ const OptimizedPortfolio = () => {
   }, [navigation]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background liquid-background">
+      {/* Floating Bubbles */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {[...Array(9)].map((_, i) => (
+          <div key={i} className="floating-bubble" />
+        ))}
+      </div>
       {/* Optimized Navigation */}
       <nav 
         ref={navigationRef}
@@ -271,8 +277,8 @@ const OptimizedPortfolio = () => {
         <div className="relative z-10 max-w-7xl mx-auto w-full section-padding pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-on-scroll">
-              {/* Glass Card with Content */}
-              <div className="glass-card rounded-2xl p-8 space-y-6">
+              {/* Liquid Glass Card with Content */}
+              <div className="liquid-glass rounded-2xl p-8 space-y-6 liquid-wave">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-4">
                     <Sparkles className="h-6 w-6 text-accent animate-pulse" />
@@ -315,11 +321,11 @@ const OptimizedPortfolio = () => {
                   </div>
                 </div>
                 
-                {/* Enhanced Buttons */}
+                {/* Enhanced Liquid Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     onClick={() => scrollToSection("projects")} 
-                    className="btn-modern text-primary-foreground px-8 py-4 text-lg font-semibold magnetic-btn group"
+                    className="liquid-button liquid-ripple text-primary-foreground px-8 py-4 text-lg font-semibold magnetic-btn group"
                   >
                     <Zap className="h-5 w-5 mr-2 group-hover:animate-pulse" />
                     View My Work
@@ -327,7 +333,7 @@ const OptimizedPortfolio = () => {
                   <Button 
                     onClick={() => scrollToSection("contact")} 
                     variant="outline" 
-                    className="glass-enhanced border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold magnetic-btn group"
+                    className="liquid-card border-2 border-primary/30 hover:border-primary px-8 py-4 text-lg font-semibold magnetic-btn group liquid-ripple"
                   >
                     <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
                     Let's Talk
