@@ -5,7 +5,17 @@ import { Badge } from "@/components/ui/badge";
 import { Typewriter } from "@/components/Typewriter";
 import { LazyImage } from "@/components/LazyImage";
 import { useSmoothScroll } from "@/components/SmoothScroll";
-import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain } from "lucide-react";
+import { Code2, Palette, Smartphone, Globe, Mail, Phone, Github, Linkedin, ExternalLink, ChevronDown, Menu, X, MapPin, Calendar, Award, Briefcase, GraduationCap, Send, Sparkles, Zap, Star, Brain, Download } from "lucide-react";
+
+// Import certificate assets for proper bundling
+import udacityGenaiCert from "@/assets/udacity-genai-certificate.avif";
+import udemyPythonMlCert from "@/assets/udemy-python-ml-certificate.avif";
+import udemyUiuxCert from "@/assets/udemy-uiux-certificate.avif";
+import nptelCloudCert from "@/assets/nptel-cloud-certificate.avif";
+import newtonPythonCert from "@/assets/newton-python-certificate.avif";
+import deloitteCert from "@/assets/deloitte-certificate.avif";
+import intelCert from "@/assets/intel-certificate.avif";
+import internpeCert from "@/assets/internpe-certificate.png";
 
 // Lazy load heavy components
 const Hero3D = lazy(() => import("@/components/Hero3D"));
@@ -212,19 +222,19 @@ const OptimizedPortfolio = () => {
       </div>
       {/* Optimized Navigation */}
       <nav ref={navigationRef} className="fixed top-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border" style={{
-      transform: `translateY(${Math.max(-100, scrollY * -0.1)}px)`
+      transform: scrollY > 50 ? 'translateY(0)' : 'translateY(0)',
+      boxShadow: scrollY > 50 ? '0 1px 0 rgba(0,0,0,0.08)' : 'none'
     }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="font-bold text-xl gradient-text cursor-pointer" onClick={() => scrollToSection('home')}>
+          <div className="flex justify-between items-center h-12">
+            <div className="font-semibold text-lg tracking-tight cursor-pointer" onClick={() => scrollToSection('home')}>
               Piyush Thakur
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-6">
-              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className={`px-3 py-2 text-sm font-medium transition-all duration-200 relative ${activeSection === item.href ? "text-primary" : "text-muted-foreground hover:text-primary"}`}>
+            <div className="hidden md:flex space-x-8">
+              {navigation.map(item => <button key={item.name} onClick={() => scrollToSection(item.href)} className={`text-xs font-medium tracking-wide transition-colors duration-200 ${activeSection === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}>
                   {item.name}
-                  {activeSection === item.href && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-scale-in" />}
                 </button>)}
             </div>
 
@@ -544,98 +554,35 @@ const OptimizedPortfolio = () => {
       {/* Certificates Section */}
       <MemoizedSection id="certificates" className="section-padding bg-section-bg animate-on-scroll">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Certifications</h2>
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-4 text-center text-gradient">Certifications</h2>
+          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">Industry-recognized credentials that validate my expertise.</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/udacity-genai-certificate.avif" alt="Udacity GenAI Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">Generative AI</h3>
-              <p className="text-muted-foreground text-sm mb-4">Udacity</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/udacity-genai-certificate.avif';
-              link.download = 'udacity-genai-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
-
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/udemy-python-ml-certificate.avif" alt="Python ML Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">Python & Machine Learning</h3>
-              <p className="text-muted-foreground text-sm mb-4">Udemy</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/udemy-python-ml-certificate.avif';
-              link.download = 'udemy-python-ml-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
-
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/udemy-uiux-certificate.avif" alt="UI/UX Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">UI/UX Design</h3>
-              <p className="text-muted-foreground text-sm mb-4">Udemy</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/udemy-uiux-certificate.avif';
-              link.download = 'udemy-uiux-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
-
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/nptel-cloud-certificate.avif" alt="Cloud Computing Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">Cloud Computing</h3>
-              <p className="text-muted-foreground text-sm mb-4">NPTEL</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/nptel-cloud-certificate.avif';
-              link.download = 'nptel-cloud-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
-
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/newton-python-certificate.avif" alt="Python Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">Python Programming</h3>
-              <p className="text-muted-foreground text-sm mb-4">Newton School</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/newton-python-certificate.avif';
-              link.download = 'newton-python-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
-
-            <Card className="glass-card p-6 hover:scale-105 transition-transform">
-              <LazyImage src="/src/assets/deloitte-certificate.avif" alt="Deloitte Certificate" className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-bold mb-2">Business Analytics</h3>
-              <p className="text-muted-foreground text-sm mb-4">Deloitte</p>
-              <Button variant="outline" className="w-full" onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/src/assets/deloitte-certificate.avif';
-              link.download = 'deloitte-certificate.avif';
-              link.click();
-            }}>
-                <Award className="h-4 w-4 mr-2" />
-                Download
-              </Button>
-            </Card>
+            {[
+              { src: udacityGenaiCert, title: "Generative AI", issuer: "Udacity", file: "udacity-genai-certificate.avif" },
+              { src: udemyPythonMlCert, title: "Python & Machine Learning", issuer: "Udemy", file: "udemy-python-ml-certificate.avif" },
+              { src: udemyUiuxCert, title: "UI/UX Design", issuer: "Udemy", file: "udemy-uiux-certificate.avif" },
+              { src: nptelCloudCert, title: "Cloud Computing", issuer: "NPTEL", file: "nptel-cloud-certificate.avif" },
+              { src: newtonPythonCert, title: "Python Programming", issuer: "Newton School", file: "newton-python-certificate.avif" },
+              { src: deloitteCert, title: "Business Analytics", issuer: "Deloitte", file: "deloitte-certificate.avif" },
+            ].map((cert, index) => (
+              <Card key={index} className="glass-card overflow-hidden group hover:-translate-y-2 transition-all duration-500">
+                <div className="relative overflow-hidden">
+                  <img src={cert.src} alt={cert.title} className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-lg mb-1">{cert.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">{cert.issuer}</p>
+                  <a href={cert.src} download={cert.file} className="inline-block w-full">
+                    <Button variant="outline" className="w-full">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download
+                    </Button>
+                  </a>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </MemoizedSection>
@@ -643,62 +590,35 @@ const OptimizedPortfolio = () => {
       {/* Internships Section */}
       <MemoizedSection id="internships" className="section-padding animate-on-scroll">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-16 text-center text-gradient">Internships</h2>
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-4 text-center text-gradient">Internships</h2>
+          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">Hands-on industry experience that shaped my professional growth.</p>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="glass-card p-8 hover:scale-105 transition-transform">
-              <div className="flex items-start gap-6">
-                <LazyImage src="/src/assets/intel-certificate.avif" alt="Intel" className="w-16 h-16 object-cover rounded-lg" />
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Software Development Intern</h3>
-                  <p className="text-primary font-medium mb-2">Intel Corporation</p>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    <Calendar className="h-4 w-4 inline mr-2" />
-                    Summer 2023
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Worked on optimizing software performance and contributing to Intel's development tools. 
-                    Gained experience in low-level programming and hardware-software integration.
-                  </p>
-                  <Button variant="outline" size="sm" onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/intel-certificate.avif';
-                  link.download = 'intel-certificate.avif';
-                  link.click();
-                }}>
-                    <Award className="h-4 w-4 mr-2" />
-                    Certificate
-                  </Button>
+            {[
+              { src: intelCert, company: "Intel Corporation", role: "Software Development Intern", period: "Summer 2023", desc: "Worked on optimizing software performance and contributing to Intel's development tools. Gained experience in low-level programming and hardware-software integration.", file: "intel-certificate.avif" },
+              { src: internpeCert, company: "InternPe", role: "Web Development Intern", period: "Winter 2023", desc: "Developed responsive web applications using modern frameworks. Collaborated with cross-functional teams to deliver high-quality digital solutions.", file: "internpe-certificate.png" },
+            ].map((intern, index) => (
+              <Card key={index} className="glass-card p-8 hover:-translate-y-2 transition-all duration-500">
+                <div className="flex items-start gap-6">
+                  <img src={intern.src} alt={intern.company} className="w-16 h-16 object-cover rounded-xl" loading="lazy" />
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-1">{intern.role}</h3>
+                    <p className="text-primary font-medium mb-2">{intern.company}</p>
+                    <p className="text-muted-foreground text-sm mb-4 flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      {intern.period}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mb-4">{intern.desc}</p>
+                    <a href={intern.src} download={intern.file}>
+                      <Button variant="outline" size="sm">
+                        <Download className="h-4 w-4 mr-2" />
+                        Certificate
+                      </Button>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </Card>
-
-            <Card className="glass-card p-8 hover:scale-105 transition-transform">
-              <div className="flex items-start gap-6">
-                <LazyImage src="/src/assets/internpe-certificate.png" alt="InternPe" className="w-16 h-16 object-cover rounded-lg" />
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">Web Development Intern</h3>
-                  <p className="text-primary font-medium mb-2">InternPe</p>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    <Calendar className="h-4 w-4 inline mr-2" />
-                    Winter 2023
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Developed responsive web applications using modern frameworks. 
-                    Collaborated with cross-functional teams to deliver high-quality digital solutions.
-                  </p>
-                  <Button variant="outline" size="sm" onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = '/src/assets/internpe-certificate.png';
-                  link.download = 'internpe-certificate.png';
-                  link.click();
-                }}>
-                    <Award className="h-4 w-4 mr-2" />
-                    Certificate
-                  </Button>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            ))}
           </div>
         </div>
       </MemoizedSection>
