@@ -566,7 +566,8 @@ const OptimizedPortfolio = () => {
 
           <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer}>
             {[
-              { icon: <Globe className="h-12 w-12 text-white" />, gradient: "from-primary to-tech-blue", title: "E-Commerce Platform", desc: "Full-stack e-commerce solution built with MERN stack", tags: ["React", "Node.js", "MongoDB"] },
+              { icon: <Globe className="h-12 w-12 text-white" />, gradient: "from-primary to-tech-blue", title: "GMR & Associates", desc: "Professional CA firm website with modern design, service listings, and client portal for GMR and Associates", tags: ["React", "UI/UX", "Tailwind"], building: true },
+              { icon: <Globe className="h-12 w-12 text-white" />, gradient: "from-tech-blue to-accent", title: "E-Commerce Platform", desc: "Full-stack e-commerce solution built with MERN stack", tags: ["React", "Node.js", "MongoDB"] },
               { icon: <Brain className="h-12 w-12 text-white" />, gradient: "from-tech-emerald to-accent", title: "AI Data Analytics", desc: "Machine learning dashboard for data visualization", tags: ["Python", "ML", "React"] },
               { icon: <Smartphone className="h-12 w-12 text-white" />, gradient: "from-tech-purple to-primary", title: "Mobile App UI", desc: "Modern mobile app design with smooth animations", tags: ["UI/UX", "Figma", "React Native"] },
             ].map((project, index) => (
@@ -583,16 +584,19 @@ const OptimizedPortfolio = () => {
                     >
                       {project.icon}
                     </motion.div>
-                    <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                    <div className="flex items-center gap-2 mb-3">
+                      <h3 className="text-xl font-bold">{project.title}</h3>
+                      {(project as any).building && <Badge className="bg-tech-emerald/20 text-tech-emerald border-tech-emerald/30 text-xs">In Progress</Badge>}
+                    </div>
                     <p className="text-muted-foreground mb-4">{project.desc}</p>
-                    <div className="flex gap-2 mb-4">
+                    <div className="flex gap-2 mb-4 flex-wrap">
                       {project.tags.map((tag, i) => (
                         <Badge key={i} variant="secondary">{tag}</Badge>
                       ))}
                     </div>
                     <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      View Project
+                      {(project as any).building ? "Coming Soon" : "View Project"}
                     </Button>
                   </Card>
                 </motion.div>
