@@ -603,6 +603,28 @@ const OptimizedPortfolio = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* GitHub CTA */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-16 text-center"
+          >
+            <motion.a
+              href="https://github.com/27Piyush27?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-tech-purple text-primary-foreground font-semibold text-lg shadow-elegant transition-all"
+            >
+              <Github className="h-6 w-6" />
+              <span>Explore All Projects on GitHub</span>
+              <ExternalLink className="h-5 w-5" />
+            </motion.a>
+            <motion.p variants={fadeUp} className="mt-4 text-muted-foreground text-sm">
+              View source code, contributions & more repositories
+            </motion.p>
+          </motion.div>
         </div>
       </AnimatedSection>
 
