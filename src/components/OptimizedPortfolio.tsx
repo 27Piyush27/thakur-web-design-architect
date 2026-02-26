@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, Suspense, lazy, memo, useCallback, useMemo } from "react";
+import { ChatBot } from "@/components/ChatBot";
 import { motion, useScroll, useTransform, useInView, useSpring, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -769,6 +770,7 @@ const OptimizedPortfolio = () => {
           </motion.div>
         </div>
       </AnimatedSection>
+      <ChatBot />
     </div>
   );
 };
