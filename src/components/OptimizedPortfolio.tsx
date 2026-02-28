@@ -126,6 +126,19 @@ const OptimizedPortfolio = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [scrollY, setScrollY] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  // Cursor glow effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -205,6 +218,8 @@ const OptimizedPortfolio = () => {
 
   return (
     <div className="min-h-screen bg-background noise-overlay relative">
+      {/* Cursor Glow */}
+      <div ref={cursorRef} className="cursor-glow hidden md:block" />
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-tech-blue to-tech-emerald z-[60] origin-left"
@@ -306,29 +321,33 @@ const OptimizedPortfolio = () => {
 
       {/* ===== HERO SECTION ===== */}
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
+        {/* Immersive 3D Background - full opacity for real-time rendering */}
+        <div className="absolute inset-0 opacity-40">
           <Suspense fallback={<LoadingSpinner />}>
             <Hero3D />
           </Suspense>
         </div>
 
-        {/* Ambient Gradient Orbs */}
+        {/* Aurora Background Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="aurora-bg absolute inset-0" />
           <motion.div
-            className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-[120px]"
-            animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-primary/15 blur-[150px]"
+            animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-tech-blue/10 blur-[100px]"
-            animate={{ x: [0, -20, 0], y: [0, 30, 0], scale: [1, 1.15, 1] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-tech-blue/12 blur-[130px]"
+            animate={{ x: [0, -30, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
+            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-tech-emerald/8 blur-[80px]"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            className="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-tech-emerald/8 blur-[100px]"
+            animate={{ scale: [1, 1.3, 1], rotate: [0, 180, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
+          {/* Mesh gradient overlay */}
+          <div className="mesh-gradient absolute inset-0 opacity-30" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-20">
@@ -360,10 +379,10 @@ const OptimizedPortfolio = () => {
                   transition={{ delay: 0.5, duration: 0.8 }}
                 >
                   Hi, I'm{" "}
-                  <span className="text-gradient relative">
+                  <span className="text-shimmer relative">
                     Piyush Thakur
                     <motion.span
-                      className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-tech-blue rounded-full"
+                      className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-tech-blue to-tech-emerald rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 1.2, duration: 0.6 }}
