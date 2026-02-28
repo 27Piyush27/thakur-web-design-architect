@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float } from '@react-three/drei';
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -206,7 +206,34 @@ function Scene3D() {
   );
 }
 
+function WebGLFallback() {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="relative w-full h-full overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/30 via-indigo-900/20 to-cyan-900/30 animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-violet-500/20 blur-3xl animate-float" />
+        <div className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-cyan-500/15 blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 rounded-full bg-indigo-500/20 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+    </div>
+  );
+}
+
 export default function Hero3D() {
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) setWebglSupported(false);
+    } catch {
+      setWebglSupported(false);
+    }
+  }, []);
+
+  if (!webglSupported) return <WebGLFallback />;
+
   return (
     <div className="w-full h-full">
       <Canvas
@@ -214,6 +241,9 @@ export default function Hero3D() {
         style={{ background: 'transparent' }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
+        onCreated={({ gl }) => {
+          if (!gl) setWebglSupported(false);
+        }}
       >
         <Scene3D />
       </Canvas>
