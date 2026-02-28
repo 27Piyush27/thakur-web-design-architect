@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, MeshDistortMaterial, MeshWobbleMaterial, Environment, Sparkles as DreiSparkles } from '@react-three/drei';
+import { OrbitControls, Float } from '@react-three/drei';
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -19,14 +19,14 @@ function GlassOrb({ position, color, scale = 1 }: { position: [number, number, n
     <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1.5}>
       <mesh ref={meshRef} position={position} scale={scale}>
         <sphereGeometry args={[1, 64, 64]} />
-        <MeshDistortMaterial
+        <meshPhysicalMaterial
           color={color}
           roughness={0.1}
           metalness={0.9}
-          distort={0.3}
-          speed={2}
           transparent
           opacity={0.8}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
         />
       </mesh>
     </Float>
@@ -40,6 +40,8 @@ function WobbleTorus({ position, color }: { position: [number, number, number], 
     if (meshRef.current) {
       meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
       meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+      const s = 1 + Math.sin(state.clock.elapsedTime * 1.5) * 0.05;
+      meshRef.current.scale.set(s, s, s);
     }
   });
 
@@ -47,12 +49,12 @@ function WobbleTorus({ position, color }: { position: [number, number, number], 
     <Float speed={2} rotationIntensity={1.2} floatIntensity={2}>
       <mesh ref={meshRef} position={position}>
         <torusGeometry args={[0.8, 0.35, 32, 100]} />
-        <MeshWobbleMaterial
+        <meshPhysicalMaterial
           color={color}
           metalness={0.95}
           roughness={0.05}
-          factor={0.4}
-          speed={1.5}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
         />
       </mesh>
     </Float>
@@ -80,8 +82,6 @@ function IcoSphere({ position, color }: { position: [number, number, number], co
           clearcoat={1}
           clearcoatRoughness={0.1}
           reflectivity={1}
-          iridescence={1}
-          iridescenceIOR={1.3}
         />
       </mesh>
     </Float>
@@ -127,7 +127,7 @@ function ParticleField() {
 function ConnectedLines() {
   const linesRef = useRef<THREE.LineSegments>(null);
   
-  const { positions } = useMemo(() => {
+  const positions = useMemo(() => {
     const pos: number[] = [];
     const nodeCount = 30;
     const nodes: [number, number, number][] = [];
@@ -152,7 +152,7 @@ function ConnectedLines() {
       }
     }
     
-    return { positions: new Float32Array(pos) };
+    return new Float32Array(pos);
   }, []);
 
   useFrame((state) => {
@@ -183,29 +183,17 @@ function Scene3D() {
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#a78bfa" />
       <pointLight position={[-10, -5, -10]} intensity={0.8} color="#6366f1" />
       <pointLight position={[0, -10, 5]} intensity={0.5} color="#22d3ee" />
-      <spotLight position={[5, 15, 5]} angle={0.3} penumbra={1} intensity={0.5} color="#c084fc" />
       
-      {/* Hyper-realistic glass orbs */}
       <GlassOrb position={[-3.5, 1.5, -2]} color="#8b5cf6" scale={0.8} />
       <GlassOrb position={[3, -1, -1]} color="#06b6d4" scale={0.6} />
       <GlassOrb position={[0, 3, -4]} color="#a78bfa" scale={1} />
       
-      {/* Wobble torus */}
       <WobbleTorus position={[-2, -2.5, 0.5]} color="#c084fc" />
-      
-      {/* Iridescent icosphere */}
       <IcoSphere position={[2.5, 2, -2.5]} color="#7c3aed" />
       
-      {/* Sparkles */}
-      <DreiSparkles count={80} scale={15} size={2} speed={0.4} opacity={0.4} color="#a78bfa" />
-      
-      {/* Connected lines network */}
       <ConnectedLines />
-      
-      {/* Particle field */}
       <ParticleField />
       
-      {/* Controls */}
       <OrbitControls 
         enableZoom={false} 
         enablePan={false} 
